@@ -1,27 +1,9 @@
 # EcoCalculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
+## Линкове:
+https://jabg.sharepoint.com/sites/JuniorAchievementBulgaria/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FJuniorAchievementBulgaria%2FShared%20Documents%2FProjects%2FSecondary%20School%2FJAB%20FL%20Practical%20Finance%20NN%20BNP%20UNICREDIT%202017%2D2022%2F2022%20%2D%202023%2FImplementation%2FBNP%20Challenge%2FFor%20participants%2FSustainable%20Personal%20Finance%20%2D%20Case%20Study%20%26%20References%2Epdf&parent=%2Fsites%2FJuniorAchievementBulgaria%2FShared%20Documents%2FProjects%2FSecondary%20School%2FJAB%20FL%20Practical%20Finance%20NN%20BNP%20UNICREDIT%202017%2D2022%2F2022%20%2D%202023%2FImplementation%2FBNP%20Challenge%2FFor%20participants&p=true&ga=1
+https://jabg.sharepoint.com/:p:/s/JuniorAchievementBulgaria/EeEx6mp1M1lGsIFOfs3hEgoB-wwFu3LZKbhG4-iL_-rVcQ?e=Ze0N1t
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Технологии
+- Angular (PWA)
+- TypeScript
