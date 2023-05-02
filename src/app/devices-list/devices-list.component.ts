@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-devices-list',
   templateUrl: './devices-list.component.html',

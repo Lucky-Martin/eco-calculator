@@ -20,6 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DevicesListComponent } from './devices-list/devices-list.component';
 import { CompareDevicesComponent } from './compare-devices/compare-devices.component';
+import {MatListModule} from "@angular/material/list";
+
 import { DeviceDataComponent } from './add-device/steps/device-data/device-data.component';
 import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usage.component';
 
@@ -33,23 +35,24 @@ import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usa
     DeviceDataComponent,
     DeviceUsageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        MatGridListModule,
-        MatSlideToggleModule,
-        BrowserAnimationsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatCardModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatExpansionModule,
-        MatIconModule,
-        MatToolbarModule,
-        FormsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    FormsModule,
 
     ],
   providers: [],
