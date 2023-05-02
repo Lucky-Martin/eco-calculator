@@ -11,7 +11,7 @@ export class CalculatorService {
   private device!: INewDevice;
 
   electricityConsummationPerMonth = new Subject<number>();
-  electricityPricePerMonth = new Subject<number>();
+  electricityDeviceCostForMonth = new Subject<number>();
   electricityDeviceCostForLifetime = new Subject<number>();
   carbonFootprint = new Subject<number>();
   energyEfficiency = new Subject<number>();
@@ -24,7 +24,7 @@ export class CalculatorService {
 
   calculateEverything() {
     this.calculateElectricityConsummationPerMonth();
-    this.calculateElectricityPricePerMonth();
+    this.calculateElectricityDeviceCostForMonth();
     this.calculateElectricityDeviceCostForLifetime();
     this.calculateCarbonFootprint();
     this.calculateEnergyEfficiency();
@@ -35,8 +35,12 @@ export class CalculatorService {
     this.electricityConsummationPerMonth.next(energyConsumption);
   }
 
-  calculateElectricityPricePerMonth() {
-    this.electricityPricePerMonth.next(1);
+  calculateElectricityDeviceCostForMonth() {
+    const monthlyEnergyConsumption = this.device.hoursPerMonth * this.device.power;
+    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
+    const monthlyEnergyConsumptionPerMonth = monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
+
+    this.electricityDeviceCostForMonth.next(monthlyEnergyConsumptionPerMonth);
   }
 
   calculateElectricityDeviceCostForLifetime() {
