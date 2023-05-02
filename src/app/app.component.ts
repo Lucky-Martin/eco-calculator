@@ -21,6 +21,9 @@ export class AppComponent {
   }
 
   calculateFootprint() {
-    console.log(this.deviceData);
+    const deviceType = this.deviceData.get('deviceType')!.value;
+    const power = this.deviceData.get('deviceType')!.value;
+    const energyClass = this.deviceData.get('deviceType')!.value;
+    const warranty = this.deviceData.get('deviceType')!.value;
   }
 }
