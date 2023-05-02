@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
+import { Device } from "../../models/device.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
 
-  devices: any[] = [];
+  private device!: Device;
 
   electricityConsummationPerMonth = new Subject<any>();
   electricityPricePerMonth = new Subject<any>();
@@ -16,8 +17,8 @@ export class CalculatorService {
 
   constructor() { }
 
-  addDevice(newDevice: any){
-    this.devices.push(newDevice);
+  setDevice(newDevice: Device){
+    this.device = newDevice;
   }
 
   calculateEverything() {
