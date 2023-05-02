@@ -9,11 +9,11 @@ export class CalculatorService {
 
   private device!: IDevice;
 
-  electricityConsummationPerMonth = new Subject<any>();
-  electricityPricePerMonth = new Subject<any>();
-  electricityDeviceCostForLifetime = new Subject<any>();
-  carbonFootprint = new Subject<any>();
-  energyEfficiency = new Subject<any>();
+  electricityConsummationPerMonth = new Subject<number>();
+  electricityPricePerMonth = new Subject<number>();
+  electricityDeviceCostForLifetime = new Subject<number>();
+  carbonFootprint = new Subject<number>();
+  energyEfficiency = new Subject<number>();
 
   constructor() { }
 
@@ -30,7 +30,8 @@ export class CalculatorService {
   }
 
   calculateElectricityConsummationPerMonth() {
-    this.electricityConsummationPerMonth.next(1);
+    const energyConsumption = this.device.hoursPerMonth * this.device.power;
+    this.electricityConsummationPerMonth.next(energyConsumption);
   }
 
   calculateElectricityPricePerMonth() {
