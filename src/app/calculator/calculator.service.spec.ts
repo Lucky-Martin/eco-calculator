@@ -27,6 +27,14 @@ describe('CalculatorService', () => {
     service.electricityConsummationPerMonth.subscribe((value) => emittedValue = value);
     service.setDevice(baseDevice);
     service.calculateElectricityConsummationPerMonth();
-    expect(emittedValue).toEqual(100)
+    expect(emittedValue).toEqual(78)
+  });
+
+  it('should calculate electricity consumption for the lifetime of the device', () => {
+    let emittedValue!: number;
+    service.electricityDeviceCostForLifetime.subscribe((value) => emittedValue = value);
+    service.setDevice(baseDevice);
+    service.calculateElectricityDeviceCostForLifetime();
+    expect(emittedValue).toEqual(424.944)
   });
 });
