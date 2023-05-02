@@ -1,39 +1,48 @@
 <mat-grid-list cols="1" rowHeight="5em">
   <form [formGroup]="deviceData" (ngSubmit)="calculateFootprint()">
-    <mat-grid-tile>Вид устройство
-      <!-- Device Type -->
-      <select formControlName="deviceType">
-        <option value="хладилник">Хладилник</option>
-        <option value="печка">Печка</option>
-        <option value="климатик">Климатик</option>
-        <option value="микровълнова">Микровълнова</option>
-        <option value="пералня">Пералня</option>
-        <option value="сушилня">Сушилня</option>
-        <option value="съдомиялна">Съдомиялна</option>
-        <option value="компютър">Компютър</option>
-        <option value="принтер">Принтер</option>
-      </select>
+    <mat-grid-tile style="text-align: left">Изберете електроуред
+      <mat-form-field appearance="fill">
+        <mat-label>Вид устройство</mat-label>
+        <mat-select>
+          <mat-option [value]="'хладилник'">Хладилник</mat-option>
+          <mat-option [value]="'печка'">Печка</mat-option>
+          <mat-option [value]="'климатик'">Климатик</mat-option>
+          <mat-option [value]="'микровълнова'">Микровълнова</mat-option>
+          <mat-option [value]="'пералня'">Пералня</mat-option>
+          <mat-option [value]="'сушилня'">Сушилня</mat-option>
+          <mat-option [value]="'съдомиялна'">Съдомиялна</mat-option>
+          <mat-option [value]="'компютър'">Компютър</mat-option>
+          <mat-option [value]="'принтер'">Принтер</mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
 
     <!-- Power -->
-    <mat-grid-tile>Мощност
-      <input formControlName="power" type="number">
+
+    <mat-grid-tile style="text-align: left">Въведете мощност на електроуред
+      <mat-form-field appearance="fill">
+        <mat-label>Мощност</mat-label>
+        <input matInput type="number" id="power">
+      </mat-form-field>
     </mat-grid-tile>
 
     <!-- Energy class -->
 
     <mat-grid-tile>Енергиен клас
-      <select formControlName="energyClass">
-        <option value="APP">А++</option>
-        <option value="AP">А+</option>
-        <option value="A">А</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="E">E</option>
-        <option value="F">F</option>
-        <option value="G">G</option>
-      </select>
+      <mat-form-field appearance="fill">
+        <mat-label>Енергийски класове</mat-label>
+        <mat-select>
+          <mat-option [value]="'APP'">A++</mat-option>
+          <mat-option [value]="'AP'">A+</mat-option>
+          <mat-option [value]="'A'">A</mat-option>
+          <mat-option [value]="'B'">B</mat-option>
+          <mat-option [value]="'C'">C</mat-option>
+          <mat-option [value]="'D'">D</mat-option>
+          <mat-option [value]="'E'">E</mat-option>
+          <mat-option [value]="'F'">F</mat-option>
+          <mat-option [value]="'G'">G</mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>Използвани часове
       <input formControlName="usage" placeholder="Брой часове" type="number">
