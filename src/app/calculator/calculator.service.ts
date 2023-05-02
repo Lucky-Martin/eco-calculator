@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
-import { IDevice } from "../models/device.model";
+import { INewDevice } from "../models/device.model";
 import { DomesticClientType } from "../models/domesticClients.model";
 
 @Injectable({
@@ -8,7 +8,7 @@ import { DomesticClientType } from "../models/domesticClients.model";
 })
 export class CalculatorService {
 
-  private device!: IDevice;
+  private device!: INewDevice;
 
   electricityConsummationPerMonth = new Subject<number>();
   electricityPricePerMonth = new Subject<number>();
@@ -18,7 +18,7 @@ export class CalculatorService {
 
   constructor() { }
 
-  setDevice(newDevice: IDevice){
+  setDevice(newDevice: INewDevice){
     this.device = newDevice;
   }
 

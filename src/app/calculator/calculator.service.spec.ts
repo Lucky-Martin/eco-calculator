@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CalculatorService } from './calculator.service';
-import type { IDevice } from "../../models/device.model";
+import type { INewDevice } from "../models/device.model";
 
 describe('CalculatorService', () => {
   let service: CalculatorService;
-  const baseDevice: IDevice = {
-    power: 5,
-    hoursPerMonth: 20,
+  const baseDevice: INewDevice = {
+    power: 0.13,
+    hoursPerMonth: 600,
     energyClass: "APP",
     typeOfDevice: "refrigerator",
     warrantyInMonths: 24
