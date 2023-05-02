@@ -24,6 +24,9 @@ export class CalculatorService {
   calculateEverything() {
     this.calculateElectricityConsummationPerMonth();
     this.calculateElectricityPricePerMonth();
+    this.calculateElectricityDeviceCostForLifetime();
+    this.calculateCarbonFootprint();
+    this.calculateEnergyEfficiency();
   }
 
   calculateElectricityConsummationPerMonth() {
