@@ -40,8 +40,11 @@ export class CalculatorService {
   }
 
   calculateElectricityDeviceCostForLifetime() {
-    this.electricityDeviceCostForLifetime.next(1);
+    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
+    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
+    const lifetimeEnergyConsumptionConst = lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
 
+    this.electricityDeviceCostForLifetime.next(lifetimeEnergyConsumptionConst);
   }
 
   calculateCarbonFootprint() {
