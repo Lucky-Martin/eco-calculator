@@ -21,4 +21,12 @@ describe('CalculatorService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should calculate energy consumption', () => {
+    let emittedValue!: number;
+    service.electricityConsummationPerMonth.subscribe((value) => emittedValue = value);
+    service.setDevice(baseDevice);
+    service.calculateElectricityConsummationPerMonth();
+    expect(emittedValue).toEqual(100)
+  });
 });
