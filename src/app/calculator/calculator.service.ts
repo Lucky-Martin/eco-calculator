@@ -12,6 +12,7 @@ export class CalculatorService {
 
   electricityConsummationPerMonth = new Subject<number>();
   electricityDeviceCostForMonth = new Subject<number>();
+  electricityDeviceConsumptionForLifetime = new Subject<number>();
   electricityDeviceCostForLifetime = new Subject<number>();
   carbonFootprint = new Subject<number>();
   energyEfficiency = new Subject<number>();
@@ -43,6 +44,11 @@ export class CalculatorService {
     this.electricityDeviceCostForMonth.next(monthlyEnergyConsumptionPerMonth);
   }
 
+  calculateElectricityDeviceConsumptionForLifetime() {
+    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
+
+    this.electricityDeviceConsumptionForLifetime.next(lifetimeEnergyConsumption);
+  }
   calculateElectricityDeviceCostForLifetime() {
     const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
     const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
