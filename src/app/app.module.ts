@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {ReactiveFormsModule} from "@angular/forms";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -13,8 +14,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSlideToggleModule,
-    MatGridListModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
