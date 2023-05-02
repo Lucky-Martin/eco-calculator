@@ -7,15 +7,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-device.component.css']
 })
 export class AddDeviceComponent implements OnInit {
-
   deviceData: FormGroup;
+  deviceUsage: number = 0;
 
   constructor(private formBuilder: FormBuilder) {
     this.deviceData = this.formBuilder.group({
       deviceType: ['', [Validators.required]],
       power: [0, [Validators.required]],
       energyClass: ['', [Validators.required]],
-      usage: ['', [Validators.required]],
       warranty: ['', [Validators.required]]
     });
   }

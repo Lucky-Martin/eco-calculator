@@ -1,0 +1,39 @@
+<form [formGroup]="deviceData">
+  <mat-form-field appearance="fill">
+    <mat-label>Вид устройство</mat-label>
+    <mat-select formControlName="deviceType">
+      <mat-option [value]="'хладилник'">Хладилник</mat-option>
+      <mat-option [value]="'печка'">Печка</mat-option>
+      <mat-option [value]="'климатик'">Климатик</mat-option>
+      <mat-option [value]="'микровълнова'">Микровълнова</mat-option>
+      <mat-option [value]="'пералня'">Пералня</mat-option>
+      <mat-option [value]="'сушилня'">Сушилня</mat-option>
+      <mat-option [value]="'съдомиялна'">Съдомиялна</mat-option>
+      <mat-option [value]="'компютър'">Компютър</mat-option>
+      <mat-option [value]="'принтер'">Принтер</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Мощност</mat-label>
+    <input matInput formControlName="power" type="number" id="power">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Енергийски класове</mat-label>
+    <mat-select formControlName="energyClass">
+      <mat-option [value]="'APP'">A++</mat-option>
+      <mat-option [value]="'AP'">A+</mat-option>
+      <mat-option [value]="'A'">A</mat-option>
+      <mat-option [value]="'B'">B</mat-option>
+      <mat-option [value]="'C'">C</mat-option>
+      <mat-option [value]="'D'">D</mat-option>
+      <mat-option [value]="'E'">E</mat-option>
+      <mat-option [value]="'F'">F</mat-option>
+      <mat-option [value]="'G'">G</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Гаранция (месеци)</mat-label>
+    <input matInput formControlName="warranty" type="number">
+  </mat-form-field>
+  <button mat-button matStepperNext>Продължи</button>
+</form>
