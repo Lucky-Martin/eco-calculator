@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
 import { IDevice } from "../../models/device.model";
+import { DomesticClientType } from "../../models/domesticClients.model";
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,13 @@ export class CalculatorService {
 
   calculateEnergyEfficiency() {
     this.energyEfficiency.next(1);
+  }
+
+  private domesticClientType(annualEnergyConsumption: number): DomesticClientType {
+    if (annualEnergyConsumption < 1_000) return DomesticClientType.D1
+    else if (annualEnergyConsumption < 2_500) return DomesticClientType.D2
+    else if (annualEnergyConsumption < 5_000) return DomesticClientType.D3
+    else if (annualEnergyConsumption < 15_000) return DomesticClientType.D4
+    else return DomesticClientType.D5
   }
 }
