@@ -1,36 +1,43 @@
-<form>
-  <!-- Device Type -->
-  <label for="deviceType">Вид устройство</label>
-  <select id="deviceType">
-    <option value="хладилник">Хладилник</option>
-    <option value="печка">Печка</option>
-    <option value="климатик">Климатик</option>
-    <option value="микровълнова">Микровълнова</option>
-    <option value="пералня">Пералня</option>
-    <option value="сушилня">Сушилня</option>
-    <option value="съдомиялна">Съдомиялна</option>
-    <option value="компютър">Компютър</option>
-    <option value="принтер">Принтер</option>
-  </select>
+<mat-grid-list cols="1" rowHeight="5em">
+  <form>
+    <mat-grid-tile>Вид устройство
+    <!-- Device Type -->
+    <select id="deviceType">
+      <option value="хладилник">Хладилник</option>
+      <option value="печка">Печка</option>
+      <option value="климатик">Климатик</option>
+      <option value="микровълнова">Микровълнова</option>
+      <option value="пералня">Пералня</option>
+      <option value="сушилня">Сушилня</option>
+      <option value="съдомиялна">Съдомиялна</option>
+      <option value="компютър">Компютър</option>
+      <option value="принтер">Принтер</option>
+    </select>
+    </mat-grid-tile>
 
-  <!-- Power -->
-  <label for="power">Мощност</label>
-  <input id="power" placeholder="Мощност (kW)">
+    <!-- Power -->
+    <mat-grid-tile>Мощност
+    <input id="power" placeholder="Мощност (kW)">
+    </mat-grid-tile>
 
-  <!-- Energy class -->
-  <label for="energyClass">Енергиен клас</label>
-  <select id="energyClass">
-    <option value="APP">А++</option>
-    <option value="AP">А+</option>
-    <option value="A">А</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-    <option value="D">D</option>
-    <option value="E">E</option>
-    <option value="F">F</option>
-    <option value="G">G</option>
-  </select>
+    <!-- Energy class -->
 
-  <!-- Usage hours -->
+    <mat-grid-tile>Енергиен клас
+    <select id="energyClass">
+      <option value="APP">А++</option>
+      <option value="AP">А+</option>
+      <option value="A">А</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="E">E</option>
+      <option value="F">F</option>
+      <option value="G">G</option>
+    </select>
+    </mat-grid-tile>
 
-</form>
+    <!-- Usage hours -->
+  </form>
+</mat-grid-list>
+
+
