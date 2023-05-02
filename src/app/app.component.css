@@ -1,0 +1,11 @@
+mat-toolbar button {
+  margin-right: 20px;
+}
+mat-sidenav-container {
+  width: 100%;
+  height: 100vh;
+}
+mat-sidenav-container mat-sidenav {
+  min-width: 20%;
+  max-width: 316px;
+}

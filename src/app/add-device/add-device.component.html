@@ -1,0 +1,60 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>Изчисли своя</mat-card-subtitle>
+    <mat-card-title>Въглероден отпечатък</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="deviceData" (ngSubmit)="calculateFootprint()">
+      <mat-stepper [linear]="true">
+        <mat-step [stepControl]="deviceData">
+          <ng-template matStepLabel>Характеристика на устройството</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Вид устройство</mat-label>
+            <mat-select>
+                <mat-option [value]="'хладилник'">Хладилник</mat-option>
+                <mat-option [value]="'печка'">Печка</mat-option>
+                <mat-option [value]="'климатик'">Климатик</mat-option>
+                <mat-option [value]="'микровълнова'">Микровълнова</mat-option>
+                <mat-option [value]="'пералня'">Пералня</mat-option>
+                <mat-option [value]="'сушилня'">Сушилня</mat-option>
+                <mat-option [value]="'съдомиялна'">Съдомиялна</mat-option>
+                <mat-option [value]="'компютър'">Компютър</mat-option>
+                <mat-option [value]="'принтер'">Принтер</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Мощност</mat-label>
+            <input matInput type="number" id="power">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Енергийски класове</mat-label>
+            <mat-select>
+                <mat-option [value]="'APP'">A++</mat-option>
+                <mat-option [value]="'AP'">A+</mat-option>
+                <mat-option [value]="'A'">A</mat-option>
+                <mat-option [value]="'B'">B</mat-option>
+                <mat-option [value]="'C'">C</mat-option>
+                <mat-option [value]="'D'">D</mat-option>
+                <mat-option [value]="'E'">E</mat-option>
+                <mat-option [value]="'F'">F</mat-option>
+                <mat-option [value]="'G'">G</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Гаранция (месеци)</mat-label>
+            <input matInput formControlName="warranty" type="number">
+          </mat-form-field>
+          <button type="submit">Пресметни</button>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Работа</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Брой часове работа</mat-label>
+            <input matInput formControlName="usage" type="number">
+          </mat-form-field>
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </mat-card-content>
+</mat-card>

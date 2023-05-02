@@ -1,51 +1,18 @@
-<mat-grid-list cols="1" rowHeight="5em">
-  <form [formGroup]="deviceData" (ngSubmit)="calculateFootprint()">
-    <mat-grid-tile>Вид устройство
-      <!-- Device Type -->
-      <select formControlName="deviceType">
-        <option value="хладилник">Хладилник</option>
-        <option value="печка">Печка</option>
-        <option value="климатик">Климатик</option>
-        <option value="микровълнова">Микровълнова</option>
-        <option value="пералня">Пералня</option>
-        <option value="сушилня">Сушилня</option>
-        <option value="съдомиялна">Съдомиялна</option>
-        <option value="компютър">Компютър</option>
-        <option value="принтер">Принтер</option>
-      </select>
-    </mat-grid-tile>
-
-    <!-- Power -->
-    <mat-grid-tile>Мощност
-      <input formControlName="power" type="number">
-    </mat-grid-tile>
-
-    <!-- Energy class -->
-
-    <mat-grid-tile>Енергиен клас
-      <select formControlName="energyClass">
-        <option value="APP">А++</option>
-        <option value="AP">А+</option>
-        <option value="A">А</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="E">E</option>
-        <option value="F">F</option>
-        <option value="G">G</option>
-      </select>
-    </mat-grid-tile>
-    <mat-grid-tile>Използвани часове
-      <input formControlName="usage" placeholder="Брой часове" type="number">
-    </mat-grid-tile>
-
-    <mat-grid-tile>Гаранция
-      <input formControlName="warranty" placeholder="Гаранция (месеци)" type="number">
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <button type="submit">Пресметни</button>
-    </mat-grid-tile>
-    <!-- Usage hours -->
-  </form>
-</mat-grid-list>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="updateNavState(!showNav)">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>EcoMeter</span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="showNav">
+    <app-navigation (updatePage)="updatePageId($event)"></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content-container" [ngSwitch]="pageId">
+      <app-add-device *ngSwitchCase="'add'"></app-add-device>
+      <app-devices-list *ngSwitchCase="'list'"></app-devices-list>
+      <app-compare-devices *ngSwitchCase="'compare'"></app-compare-devices>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

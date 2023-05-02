@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,23 +6,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'eco-calculator';
-  deviceData: FormGroup;
+  showNav = true;
+  pageId: string = 'list';
 
-  constructor(private formBuilder: FormBuilder) {
-    this.deviceData = this.formBuilder.group({
-      deviceType: ['', [Validators.required]],
-      power: [0, [Validators.required]],
-      energyClass: ['', [Validators.required]],
-      usage: ['', [Validators.required]],
-      warranty: ['', [Validators.required]]
-    });
+  updateNavState(state: boolean) {
+    this.showNav = state;
   }
 
-  calculateFootprint() {
-    const deviceType = this.deviceData.get('deviceType')!.value;
-    const power = this.deviceData.get('deviceType')!.value;
-    const energyClass = this.deviceData.get('deviceType')!.value;
-    const warranty = this.deviceData.get('deviceType')!.value;
+  updatePageId(pageId: string) {
+    this.pageId = pageId;
   }
 }
