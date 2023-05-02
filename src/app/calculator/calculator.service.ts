@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
-import { IDevice } from "../models/device.model";
+import { INewDevice } from "../models/device.model";
 import { DomesticClientType } from "../models/domesticClients.model";
 
 @Injectable({
@@ -8,23 +8,24 @@ import { DomesticClientType } from "../models/domesticClients.model";
 })
 export class CalculatorService {
 
-  private device!: IDevice;
+  private device!: INewDevice;
 
   electricityConsummationPerMonth = new Subject<number>();
-  electricityPricePerMonth = new Subject<number>();
+  electricityDeviceCostForMonth = new Subject<number>();
+  electricityDeviceConsumptionForLifetime = new Subject<number>();
   electricityDeviceCostForLifetime = new Subject<number>();
   carbonFootprint = new Subject<number>();
   energyEfficiency = new Subject<number>();
 
   constructor() { }
 
-  setDevice(newDevice: IDevice){
+  setDevice(newDevice: INewDevice){
     this.device = newDevice;
   }
 
   calculateEverything() {
     this.calculateElectricityConsummationPerMonth();
-    this.calculateElectricityPricePerMonth();
+    this.calculateElectricityDeviceCostForMonth();
     this.calculateElectricityDeviceCostForLifetime();
     this.calculateCarbonFootprint();
     this.calculateEnergyEfficiency();
@@ -35,13 +36,25 @@ export class CalculatorService {
     this.electricityConsummationPerMonth.next(energyConsumption);
   }
 
-  calculateElectricityPricePerMonth() {
-    this.electricityPricePerMonth.next(1);
+  calculateElectricityDeviceCostForMonth() {
+    const monthlyEnergyConsumption = this.device.hoursPerMonth * this.device.power;
+    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
+    const monthlyEnergyConsumptionPerMonth = monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
+
+    this.electricityDeviceCostForMonth.next(monthlyEnergyConsumptionPerMonth);
   }
 
-  calculateElectricityDeviceCostForLifetime() {
-    this.electricityDeviceCostForLifetime.next(1);
+  calculateElectricityDeviceConsumptionForLifetime() {
+    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
 
+    this.electricityDeviceConsumptionForLifetime.next(lifetimeEnergyConsumption);
+  }
+  calculateElectricityDeviceCostForLifetime() {
+    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
+    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
+    const lifetimeEnergyConsumptionConst = lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
+
+    this.electricityDeviceCostForLifetime.next(lifetimeEnergyConsumptionConst);
   }
 
   calculateCarbonFootprint() {

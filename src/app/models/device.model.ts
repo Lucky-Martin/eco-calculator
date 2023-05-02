@@ -9,3 +9,5 @@ export interface IDevice {
   carbonFootprint: number;
   warrantyInMonths: number;
 }
+
+export type INewDevice = Omit<IDevice, "carbonFootprint">
