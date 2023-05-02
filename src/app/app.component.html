@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="deviceData" (ngSubmit)="calculateFootprint()">
   <!-- Device Type -->
   <label for="deviceType">Вид устройство</label>
-  <select id="deviceType">
+  <select formControlName="deviceType" id="deviceType">
     <option value="хладилник">Хладилник</option>
     <option value="печка">Печка</option>
     <option value="климатик">Климатик</option>
@@ -14,12 +14,12 @@
   </select>
 
   <!-- Power -->
-  <label for="power">Мощност</label>
-  <input id="power" placeholder="Мощност (kW)">
+  <label for="power">Мощност (kW)</label>
+  <input formControlName="power" id="power" type="number">
 
   <!-- Energy class -->
   <label for="energyClass">Енергиен клас</label>
-  <select id="energyClass">
+  <select id="energyClass" formControlName="energyClass">
     <option value="APP">А++</option>
     <option value="AP">А+</option>
     <option value="A">А</option>
@@ -32,5 +32,12 @@
   </select>
 
   <!-- Usage hours -->
+  <label for="usage">Използвани часове</label>
+  <input formControlName="usage" id="usage" placeholder="Брой часове" type="number">
 
+  <!-- Warranty -->
+  <label for="warranty">Гаранция</label>
+  <input formControlName="warranty" id="warranty" placeholder="Гаранция (месеци)" type="number">
+
+  <button type="submit">Пресметни</button>
 </form>
