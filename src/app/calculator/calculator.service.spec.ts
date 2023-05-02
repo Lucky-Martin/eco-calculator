@@ -36,6 +36,12 @@ describe('CalculatorService', () => {
     expect(emittedValue).toEqual(17.706)
   });
 
+  it('should calculate electricity device consumption for lifetime', () => {
+    service.electricityDeviceConsumptionForLifetime.subscribe((value) => emittedValue = value);
+    service.calculateElectricityDeviceConsumptionForLifetime();
+    expect(emittedValue).toEqual(1872)
+  });
+
   it('should calculate electricity consumption for the lifetime of the device', () => {
     service.electricityDeviceCostForLifetime.subscribe((value) => emittedValue = value);
     service.calculateElectricityDeviceCostForLifetime();
