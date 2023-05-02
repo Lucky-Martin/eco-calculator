@@ -30,6 +30,14 @@ describe('CalculatorService', () => {
     expect(emittedValue).toEqual(78)
   });
 
+  it('should calculate electricity device cost for month', () => {
+    let emittedValue!: number;
+    service.electricityDeviceCostForMonth.subscribe((value) => emittedValue = value);
+    service.setDevice(baseDevice);
+    service.calculateElectricityDeviceCostForMonth();
+    expect(emittedValue).toEqual(17.706)
+  });
+
   it('should calculate electricity consumption for the lifetime of the device', () => {
     let emittedValue!: number;
     service.electricityDeviceCostForLifetime.subscribe((value) => emittedValue = value);
