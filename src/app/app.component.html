@@ -6,13 +6,9 @@
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav mode="side" [opened]="showNav">
-    <app-navigation (updatePage)="updatePageId($event)"></app-navigation>
+    <app-navigation></app-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content-container" [ngSwitch]="pageId">
-      <app-add-device *ngSwitchCase="'add'"></app-add-device>
-      <app-devices-list *ngSwitchCase="'list'"></app-devices-list>
-      <app-compare-devices *ngSwitchCase="'compare'"></app-compare-devices>
-    </div>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -7,13 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showNav = true;
-  pageId: string = 'list';
 
   updateNavState(state: boolean) {
     this.showNav = state;
-  }
-
-  updatePageId(pageId: string) {
-    this.pageId = pageId;
   }
 }
