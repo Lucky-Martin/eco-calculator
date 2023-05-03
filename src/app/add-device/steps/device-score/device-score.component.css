@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+  margin: 20px 0;
+}
+table th,
+table td {
+  font-size: 16px;
+}
+table th,
+table td.criteria {
+  font-weight: bold;
+}

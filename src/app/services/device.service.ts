@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IDevice } from "../models/device.model";
+import {Device, IDevice, INewDevice} from "../models/device.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,20 @@ export class DeviceService {
   private storageId: string = 'devices';
   constructor() { }
 
-  addDevice(device: IDevice) {
+  addDevice(newDevice: INewDevice) {
     let devices = this.fetchDevices();
+    const device = new Device(newDevice);
     devices.push(device);
+    this.saveDevices(devices);
+  }
+
+  updateDevice(device: IDevice) {
+    let devices = this.fetchDevices();
+    let deviceIndex = devices.findIndex(deviceFromList => {
+      return deviceFromList.name === device.name;
+    });
+
+    devices[deviceIndex] = device;
     this.saveDevices(devices);
   }
 
@@ -21,7 +32,6 @@ export class DeviceService {
       return deviceFromList.name === device.name;
     });
 
-    console.log(deviceIndex)
     if (deviceIndex > -1) {
       devices.splice(deviceIndex, 1);
     }

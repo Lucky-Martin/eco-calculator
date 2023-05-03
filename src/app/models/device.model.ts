@@ -1,7 +1,11 @@
+import {generateUID} from "../services/generateUID";
+import {CalculatorService} from "../services/calculator.service";
+
 export type TEnergyClass = "APP"| "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
 export type TDeviceType = "refrigerator" | "stove" | "air conditioner" | "microwave" | "washing machine" | "dryer" | "dishwasher" | "computer" | "printer" | "boiler";
 
 export interface IDevice {
+  readonly uuid: string;
   name: string;
   typeOfDevice: TDeviceType;
   power: number;
@@ -20,4 +24,67 @@ export interface IDeviceFootprintData {
   energyEfficiency: number;
 }
 
-export type INewDevice = Omit<IDevice, "carbonFootprint">
+export type INewDevice = Omit<IDevice, "carbonFootprint" | "uuid">
+
+export class Device implements IDevice {
+  readonly uuid: string;
+
+  name: string;
+  typeOfDevice: TDeviceType;
+  power: number;
+  energyClass: TEnergyClass;
+  workingHours: number;
+  warrantyInMonths: number;
+  carbonFootprint: IDeviceFootprintData;
+
+
+
+  constructor(newDevice: INewDevice) {
+    this.uuid = generateUID();
+
+    this.name = newDevice.name;
+    this.typeOfDevice = newDevice.typeOfDevice;
+    this.power = newDevice.power;
+    this.energyClass = newDevice.energyClass;
+    this.workingHours = newDevice.workingHours;
+    this.warrantyInMonths = newDevice.warrantyInMonths;
+    this.carbonFootprint = this.CalculateData(newDevice);
+  }
+
+  UpdateDevice(updatedDevice: IDevice){
+    this.name = updatedDevice.name;
+    this.typeOfDevice = updatedDevice.typeOfDevice;
+    this.power = updatedDevice.power;
+    this.energyClass = updatedDevice.energyClass;
+    this.workingHours = updatedDevice.workingHours;
+    this.warrantyInMonths = updatedDevice.warrantyInMonths;
+    this.carbonFootprint = this.CalculateData(updatedDevice);
+  }
+
+  GetAllData() {
+    const data: IDevice = {
+      uuid: this.uuid,
+      energyClass: this.energyClass,
+      name: this.name,
+      typeOfDevice: this.typeOfDevice,
+      power: this.power,
+      workingHours: this.workingHours,
+      warrantyInMonths: this.warrantyInMonths,
+      carbonFootprint: this.carbonFootprint
+    }
+    return data;
+  }
+
+  private CalculateData(uncalculatedDevice: INewDevice) {
+    const calculatedData: IDeviceFootprintData = {
+      electricityConsummationPerMonth: CalculatorService.calculateElectricityConsummationPerMonth(uncalculatedDevice),
+      electricityDeviceCostForMonth: CalculatorService.calculateElectricityDeviceCostForMonth(uncalculatedDevice),
+      electricityDeviceConsumptionForLifetime: CalculatorService.calculateElectricityDeviceConsumptionForLifetime(uncalculatedDevice),
+      electricityDeviceCostForLifetime: CalculatorService.calculateElectricityDeviceCostForLifetime(uncalculatedDevice),
+      carbonFootprint: CalculatorService.calculateEnergyEfficiency(uncalculatedDevice),
+      energyEfficiency: CalculatorService.calculateEnergyEfficiency(uncalculatedDevice)
+    }
+
+    return calculatedData;
+  }
+}

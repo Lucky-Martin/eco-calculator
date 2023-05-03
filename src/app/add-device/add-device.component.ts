@@ -1,24 +1,27 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IDeviceFootprintData} from "../models/device.model";
 import {CalculatorService} from "../services/calculator.service";
 import {DeviceService} from "../services/device.service";
 import {MatStepper} from "@angular/material/stepper";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.css']
 })
-export class AddDeviceComponent {
+export class AddDeviceComponent implements OnInit {
   deviceData: FormGroup;
-  deviceUsage: number = 0;
   deviceFootprint!: IDeviceFootprintData;
+  deviceUsage: number = 0;
+  sessionLoaded: boolean = false;
   @ViewChild('stepper') stepper!: MatStepper;
 
   constructor(private formBuilder: FormBuilder,
               private calculatorService: CalculatorService,
-              private deviceService: DeviceService) {
+              private deviceService: DeviceService,
+              private router: Router) {
     this.deviceData = this.formBuilder.group({
       name: ['', [Validators.required]],
       deviceType: ['', [Validators.required]],
@@ -28,39 +31,38 @@ export class AddDeviceComponent {
     });
   }
 
-  calculateFootprint() {
-    let {name, power, energyClass, deviceType, warranty} = this.getInputData();
-
-    this.calculatorService.setDevice({
-      energyClass, name, power,
-      typeOfDevice: deviceType,
-      warrantyInMonths: warranty,
-      workingHours: this.deviceUsage
-    });
-
-    this.deviceFootprint = {
-      carbonFootprint: this.calculatorService.calculateCarbonFootprint(),
-      electricityConsummationPerMonth: this.calculatorService.calculateElectricityConsummationPerMonth(),
-      electricityDeviceConsumptionForLifetime: this.calculatorService.calculateElectricityDeviceConsumptionForLifetime(),
-      electricityDeviceCostForLifetime: this.calculatorService.calculateElectricityDeviceCostForLifetime(),
-      electricityDeviceCostForMonth: this.calculatorService.calculateElectricityDeviceCostForMonth(),
-      energyEfficiency: this.calculatorService.calculateEnergyEfficiency()
+  ngOnInit() {
+    const deviceDataJSON = sessionStorage.getItem('add-device');
+    if (deviceDataJSON) {
+      const {name, typeOfDevice, power, energyClass, warrantyInMonths, workingHours} = JSON.parse(deviceDataJSON);
+      this.deviceData.setValue({
+        name, power, energyClass,
+        deviceType: typeOfDevice,
+        warranty: warrantyInMonths,
+      });
+      this.deviceUsage = workingHours;
+      this.sessionLoaded = true;
     }
   }
 
-  saveDevice() {
+  async saveDevice() {
     let {name, power, energyClass, deviceType, warranty} = this.getInputData();
-
-    this.deviceService.addDevice({
+    const device = {
       energyClass, name, power,
-      carbonFootprint: this.deviceFootprint,
       typeOfDevice: deviceType,
       warrantyInMonths: warranty,
       workingHours: this.deviceUsage
-    });
+    };
+
+    if (this.sessionLoaded) {
+      // TODO: Add update for device
+    } else {
+      this.deviceService.addDevice(device);
+    }
 
     this.deviceData.reset();
     this.stepper.reset();
+    await this.router.navigateByUrl('list');
   }
 
   private getInputData() {
