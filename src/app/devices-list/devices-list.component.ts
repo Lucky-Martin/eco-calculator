@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./devices-list.component.css']
 })
 export class DevicesListComponent implements OnInit {
+  onClick(){
+
+  }
 
   constructor() { }
 
