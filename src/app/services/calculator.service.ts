@@ -1,79 +1,43 @@
-import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
-import { INewDevice } from "../models/device.model";
-import { DomesticClientType } from "../models/domesticClients.model";
-import { StatisticData } from "../models/statistics";
+import {Injectable} from '@angular/core';
+import {INewDevice} from "../models/device.model";
+import {DomesticClientType} from "../models/domesticClients.model";
+import {StatisticData} from "../models/statistics";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
-  private device!: INewDevice;
-  electricityConsummationPerMonth = new Subject<number>();
-  electricityDeviceCostForMonth = new Subject<number>();
-  electricityDeviceConsumptionForLifetime = new Subject<number>();
-  electricityDeviceCostForLifetime = new Subject<number>();
-  carbonFootprint = new Subject<number>();
-  energyEfficiency = new Subject<number>();
 
   constructor() { }
 
-  setDevice(newDevice: INewDevice){
-    this.device = newDevice;
-    console.log(this.device)
+  calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
+    return newDevice.workingHours * newDevice.power;
   }
 
-  calculateEverything() {
-    this.calculateElectricityConsummationPerMonth();
-    this.calculateElectricityDeviceCostForMonth();
-    this.calculateElectricityDeviceCostForLifetime();
-    this.calculateCarbonFootprint();
-    this.calculateEnergyEfficiency();
+  calculateElectricityDeviceCostForMonth(newDevice: INewDevice) {
+    const monthlyEnergyConsumption = newDevice.workingHours * newDevice.power;
+    const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
+    return monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
   }
 
-  calculateElectricityConsummationPerMonth() {
-
-    const energyConsumption = this.device.workingHours * this.device.power;
-    console.log(this.device)
-    this.electricityConsummationPerMonth.next(energyConsumption);
-    return energyConsumption;
+  calculateElectricityDeviceConsumptionForLifetime(newDevice: INewDevice) {
+    return newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
   }
-
-  calculateElectricityDeviceCostForMonth() {
-    const monthlyEnergyConsumption = this.device.workingHours * this.device.power;
-    const annualEnergyConsumption = this.device.power * this.device.workingHours * 12;
-    const monthlyEnergyConsumptionPerMonth = monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
-
-    this.electricityDeviceCostForMonth.next(monthlyEnergyConsumptionPerMonth);
-    return monthlyEnergyConsumptionPerMonth;
-  }
-
-  calculateElectricityDeviceConsumptionForLifetime() {
-    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
-    this.electricityDeviceConsumptionForLifetime.next(lifetimeEnergyConsumption);
-    return lifetimeEnergyConsumption;
-  }
-  calculateElectricityDeviceCostForLifetime() {
-    const annualEnergyConsumption = this.device.power * this.device.workingHours * 12;
-    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
-    const lifetimeEnergyConsumptionConst = lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
-
-    this.electricityDeviceCostForLifetime.next(lifetimeEnergyConsumptionConst);
-    return lifetimeEnergyConsumptionConst;
+  calculateElectricityDeviceCostForLifetime(newDevice: INewDevice) {
+    const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
+    const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
+    return lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
   }
 
   /**
    * @returns the carbon footprint for the device lifetime in kilograms
    * */
-  calculateCarbonFootprint() {
-    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
-    const lifetimeCarbonFootprintKG = (lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000
-    this.carbonFootprint.next(lifetimeCarbonFootprintKG);
-    return lifetimeCarbonFootprintKG;
+  calculateCarbonFootprint(newDevice: INewDevice) {
+    const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
+    return (lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000;
   }
 
-  calculateEnergyEfficiency() {
-    this.energyEfficiency.next(1);
+  calculateEnergyEfficiency(newDevice: INewDevice) {
     return 1;
   }
 
