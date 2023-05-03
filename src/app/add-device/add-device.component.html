@@ -5,18 +5,19 @@
   </mat-card-header>
 
   <mat-card-content>
-    <mat-stepper [linear]="true">
+    <mat-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="deviceData">
         <ng-template matStepLabel>Характеристика на устройството</ng-template>
-        <app-device-data [(deviceData)]="deviceData"></app-device-data>
+        <app-device-data [(deviceData)]="deviceData" (deviceDataChange)="calculateFootprint()"></app-device-data>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Работа</ng-template>
-        <app-device-usage [(hoursUsed)]="deviceUsage"></app-device-usage>
+        <app-device-usage [(hoursUsed)]="deviceUsage" (hoursUsedChange)="calculateFootprint()"></app-device-usage>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Резултат</ng-template>
-        <p>device score</p>
+        <app-device-score [carbonFootprint]="deviceFootprint"></app-device-score>
+        <button mat-button color="primary" (click)="saveDevice()">Запази устройство</button>
       </mat-step>
     </mat-stepper>
   </mat-card-content>

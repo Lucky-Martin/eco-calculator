@@ -24,6 +24,7 @@ import {MatListModule} from "@angular/material/list";
 
 import { DeviceDataComponent } from './add-device/steps/device-data/device-data.component';
 import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usage.component';
+import { DeviceScoreComponent } from './add-device/steps/device-score/device-score.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usa
     DevicesListComponent,
     CompareDevicesComponent,
     DeviceDataComponent,
-    DeviceUsageComponent
+    DeviceUsageComponent,
+    DeviceScoreComponent
   ],
   imports: [
     BrowserModule,
