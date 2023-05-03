@@ -15,7 +15,7 @@ export class AddDeviceComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
   deviceData: FormGroup;
   deviceFootprint!: IDeviceFootprintData;
-  deviceUsage: number = 0;
+  deviceUsage!: number;
   sessionLoaded: boolean = false;
   private device!: IDevice;
   private deviceUUID!: string;
@@ -27,9 +27,9 @@ export class AddDeviceComponent implements OnInit {
     this.deviceData = this.formBuilder.group({
       name: ['', [Validators.required]],
       deviceType: ['', [Validators.required]],
-      power: [0, [Validators.required]],
+      power: [null, [Validators.required]],
       energyClass: ['', [Validators.required]],
-      warranty: [0, [Validators.required]]
+      warranty: [null, [Validators.required]]
     });
   }
 
