@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IDeviceFootprintData} from "../models/device.model";
 import {CalculatorService} from "../calculator/calculator.service";
+import {DeviceService} from "../services/device.service";
+import {MatStepper} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-add-device',
@@ -12,9 +14,11 @@ export class AddDeviceComponent {
   deviceData: FormGroup;
   deviceUsage: number = 0;
   deviceFootprint!: IDeviceFootprintData;
+  @ViewChild('stepper') stepper!: MatStepper;
 
   constructor(private formBuilder: FormBuilder,
-              private calculatorService: CalculatorService) {
+              private calculatorService: CalculatorService,
+              private deviceService: DeviceService) {
     this.deviceData = this.formBuilder.group({
       name: ['', [Validators.required]],
       deviceType: ['', [Validators.required]],
@@ -25,13 +29,7 @@ export class AddDeviceComponent {
   }
 
   calculateFootprint() {
-    const name = this.deviceData.get('name')!.value;
-    const deviceType = this.deviceData.get('deviceType')!.value;
-    const power = this.deviceData.get('power')!.value;
-    const energyClass = this.deviceData.get('energyClass')!.value;
-    const warranty = this.deviceData.get('warranty')!.value;
-
-    console.log(this.deviceUsage);
+    let {name, power, energyClass, deviceType, warranty} = this.getInputData();
 
     this.calculatorService.setDevice({
       energyClass, name, power,
@@ -48,7 +46,30 @@ export class AddDeviceComponent {
       electricityDeviceCostForMonth: this.calculatorService.calculateElectricityDeviceCostForMonth(),
       energyEfficiency: this.calculatorService.calculateEnergyEfficiency()
     }
+  }
 
-    console.log(this.deviceFootprint);
+  saveDevice() {
+    let {name, power, energyClass, deviceType, warranty} = this.getInputData();
+
+    this.deviceService.addDevice({
+      energyClass, name, power,
+      carbonFootprint: this.deviceFootprint,
+      typeOfDevice: deviceType,
+      warrantyInMonths: warranty,
+      workingHours: this.deviceUsage
+    });
+
+    this.deviceData.reset();
+    this.stepper.reset();
+  }
+
+  private getInputData() {
+    const name = this.deviceData.get('name')!.value;
+    const deviceType = this.deviceData.get('deviceType')!.value;
+    const power = this.deviceData.get('power')!.value;
+    const energyClass = this.deviceData.get('energyClass')!.value;
+    const warranty = this.deviceData.get('warranty')!.value;
+
+    return {name, deviceType, power, energyClass, warranty};
   }
 }

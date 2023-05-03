@@ -8,7 +8,7 @@ export interface IDevice {
   energyClass: TEnergyClass;
   warrantyInMonths: number;
   workingHours: number;
-  carbonFootprint: number;
+  carbonFootprint: IDeviceFootprintData;
 }
 
 export interface IDeviceFootprintData {

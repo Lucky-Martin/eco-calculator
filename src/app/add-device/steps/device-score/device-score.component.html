@@ -1,1 +1,8 @@
-<p>device-score works!</p>
+<div *ngIf="footprint">
+  <p>{{footprint.carbonFootprint}}</p>
+  <p>{{footprint.electricityConsummationPerMonth}}</p>
+  <p>{{footprint.electricityDeviceConsumptionForLifetime}}</p>
+  <p>{{footprint.electricityDeviceCostForLifetime}}</p>
+  <p>{{footprint.electricityDeviceCostForMonth}}</p>
+  <p>{{footprint.energyEfficiency}}</p>
+</div>

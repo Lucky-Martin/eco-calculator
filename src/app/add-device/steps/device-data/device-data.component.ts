@@ -17,7 +17,6 @@ export class DeviceDataComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.deviceDataChange.emit(this.deviceData);
-    console.log(this.deviceData)
   }
 
 }

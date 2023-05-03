@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IDeviceFootprintData} from "../../../models/device.model";
 
 @Component({
   selector: 'app-device-score',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./device-score.component.css']
 })
 export class DeviceScoreComponent implements OnInit {
+  @Input('carbonFootprint') footprint!: IDeviceFootprintData;
 
   constructor() { }
 
