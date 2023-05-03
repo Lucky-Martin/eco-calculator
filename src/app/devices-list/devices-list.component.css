@@ -10,3 +10,44 @@ mat-card mat-card-content mat-form-field {
 mat-card-title {
   margin-top: 12px;
 }
+
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #4285f4;
+  color: #fff;
+  text-align: center;
+  line-height: 56px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.fab:hover {
+  width: 120px;
+  border-radius: 999px;
+
+}
+.fab .default-text{
+  opacity: 1;
+}
+
+.fab .hover-text {
+  display: none;
+  opacity: 0;
+}
+
+.fab:hover .hover-text {
+  display: inline-block;
+  opacity: 1;
+}
+
+.fab:hover .default-text {
+  display: none;
+  opacity: 0;
+}

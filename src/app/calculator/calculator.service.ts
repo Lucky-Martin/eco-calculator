@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
 import { INewDevice } from "../models/device.model";
 import { DomesticClientType } from "../models/domesticClients.model";
+import { StatisticData } from "../models/statistics";
 
 @Injectable({
   providedIn: 'root'
@@ -61,9 +62,14 @@ export class CalculatorService {
     return lifetimeEnergyConsumptionConst;
   }
 
+  /**
+   * @returns the carbon footprint for the device lifetime in kilograms
+   * */
   calculateCarbonFootprint() {
-    this.carbonFootprint.next(1);
-    return 1;
+    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
+    const lifetimeCarbonFootprintKG = (lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000
+    this.carbonFootprint.next(lifetimeCarbonFootprintKG);
+    return lifetimeCarbonFootprintKG;
   }
 
   calculateEnergyEfficiency() {
