@@ -25,6 +25,7 @@ import {MatListModule} from "@angular/material/list";
 import { DeviceDataComponent } from './add-device/steps/device-data/device-data.component';
 import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usage.component';
 import { DeviceScoreComponent } from './add-device/steps/device-score/device-score.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -37,24 +38,25 @@ import { DeviceScoreComponent } from './add-device/steps/device-score/device-sco
     DeviceUsageComponent,
     DeviceScoreComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatGridListModule,
-    MatSlideToggleModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
-    FormsModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatGridListModule,
+        MatSlideToggleModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCardModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatListModule,
+        FormsModule,
+        MatTableModule,
 
     ],
   providers: [],
