@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {INewDevice} from "../models/device.model";
-import {DomesticClientType} from "../models/domesticClients.model";
 import {StatisticData} from "../models/statistics";
+import {CostPerKilowattHour} from "../enums/costPerKilowattHour";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
 
-  constructor() { }
+  constructor() {
+  }
 
   static calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
     return newDevice.workingHours * newDevice.power;
@@ -16,17 +17,16 @@ export class CalculatorService {
 
   static calculateElectricityDeviceCostForMonth(newDevice: INewDevice) {
     const monthlyEnergyConsumption = newDevice.workingHours * newDevice.power;
-    const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
-    return monthlyEnergyConsumption * CalculatorService.domesticClientType(annualEnergyConsumption);
+    return monthlyEnergyConsumption * this.costPerKilowattHour();
   }
 
   static calculateElectricityDeviceConsumptionForLifetime(newDevice: INewDevice) {
     return newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
   }
+
   static calculateElectricityDeviceCostForLifetime(newDevice: INewDevice) {
-    const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
     const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
-    return lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
+    return lifetimeEnergyConsumption * this.costPerKilowattHour();
   }
 
   /**
@@ -41,11 +41,7 @@ export class CalculatorService {
     return 1;
   }
 
-  private static domesticClientType(annualEnergyConsumption: number): DomesticClientType {
-    if (annualEnergyConsumption < 1_000) return DomesticClientType.D1
-    else if (annualEnergyConsumption < 2_500) return DomesticClientType.D2
-    else if (annualEnergyConsumption < 5_000) return DomesticClientType.D3
-    else if (annualEnergyConsumption < 15_000) return DomesticClientType.D4
-    else return DomesticClientType.D5
+  private static costPerKilowattHour(): number {
+    return parseFloat(((CostPerKilowattHour.ElectroholdDay + CostPerKilowattHour.EVNBulgariaDay + CostPerKilowattHour.EnergoProDay) / 3).toFixed(5))
   }
 }
