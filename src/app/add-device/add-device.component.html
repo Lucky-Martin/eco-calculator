@@ -17,7 +17,7 @@
       <mat-step>
         <ng-template matStepLabel>Резултат</ng-template>
         <app-device-score [carbonFootprint]="deviceFootprint"></app-device-score>
-        <button mat-button color="primary" (click)="saveDevice()">Запази устройство</button>
+        <button mat-stroked-button color="basic" (click)="saveDevice()">Запази устройство</button>
       </mat-step>
     </mat-stepper>
   </mat-card-content>

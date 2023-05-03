@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DeviceService} from "../services/device.service";
 import {IDevice, TDeviceType} from "../models/device.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,9 +12,15 @@ import {IDevice, TDeviceType} from "../models/device.model";
 export class DevicesListComponent implements OnInit {
   devices: IDevice[] = [];
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(private deviceService: DeviceService,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.devices = this.deviceService.fetchDevices();
+  }
+
+  onDelete(device: IDevice) {
+    this.deviceService.deleteDevice(device);
     this.devices = this.deviceService.fetchDevices();
   }
 
@@ -21,35 +28,29 @@ export class DevicesListComponent implements OnInit {
     switch (deviceType) {
       case 'refrigerator':
         return 'хладилник';
-        break;
       case 'stove':
         return 'печка';
-        break;
       case "air conditioner":
         return 'климатик';
-        break;
       case "boiler":
         return 'бойлер';
-        break;
       case "computer":
         return 'компютър';
-        break;
       case "dishwasher":
         return 'съдомиална';
-        break;
       case "dryer":
         return 'сушилня';
-        break;
       case "microwave":
         return 'микровълнова';
-        break;
       case "printer":
         return 'принтер';
-        break;
       case "washing machine":
         return 'пералня';
-        break;
     }
   }
 
+  async onEditDevice(device: IDevice) {
+    await this.router.navigateByUrl('add');
+    sessionStorage.setItem('add-device', JSON.stringify(device));
+  }
 }
