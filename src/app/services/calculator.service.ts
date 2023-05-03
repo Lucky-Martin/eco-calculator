@@ -7,9 +7,7 @@ import {CostPerKilowattHour} from "../types/costPerKilowattHour";
   providedIn: 'root'
 })
 export class CalculatorService {
-
-  constructor() {
-  }
+  constructor() { }
 
   static calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
     return newDevice.workingHours * newDevice.power;

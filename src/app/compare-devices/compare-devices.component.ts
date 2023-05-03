@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CalculatorService} from "../services/calculator.service";
 import {DeviceService} from "../services/device.service";
+import { IDevice } from '../models/device.model';
 
 @Component({
   selector: 'app-compare-devices',
@@ -9,8 +8,10 @@ import {DeviceService} from "../services/device.service";
   styleUrls: ['./compare-devices.component.css']
 })
 export class CompareDevicesComponent implements OnInit {
+  devices!: IDevice[];
+  constructor(private deviceService: DeviceService) { }
 
   ngOnInit(): void {
+    this.devices = this.deviceService.fetchDevices();
   }
-
-  }
+}
