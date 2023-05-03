@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {INewDevice} from "../models/device.model";
 import {StatisticData} from "../models/statistics";
-import {CostPerKilowattHour} from "../enums/costPerKilowattHour";
+import {CostPerKilowattHour} from "../types/costPerKilowattHour";
 
 @Injectable({
   providedIn: 'root'
