@@ -9,6 +9,11 @@ export class DeviceService {
   private storageId: string = 'devices';
   constructor() { }
 
+  getDevice(uuid: string){
+    const devices = this.fetchDevices();
+    return devices.find((value) => value.uuid === uuid);
+  }
+
   addDevice(newDevice: INewDevice) {
     let devices = this.fetchDevices();
     const device = new Device(newDevice);
