@@ -38,7 +38,7 @@ export class CalculatorService {
   }
 
   static calculateEnergyEfficiency(newDevice: INewDevice) {
-    return 1;
+    return newDevice.energyClass;
   }
 
   private static costPerKilowattHour(): number {

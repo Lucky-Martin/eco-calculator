@@ -21,7 +21,7 @@ export interface IDeviceFootprintData {
   electricityDeviceConsumptionForLifetime: number;
   electricityDeviceCostForLifetime: number;
   carbonFootprint: number;
-  energyEfficiency: number;
+  energyEfficiency: TEnergyClass;
 }
 
 export type INewDevice = Omit<IDevice, "carbonFootprint" | "uuid">
@@ -81,7 +81,7 @@ export class Device implements IDevice {
       electricityDeviceCostForMonth: CalculatorService.calculateElectricityDeviceCostForMonth(uncalculatedDevice),
       electricityDeviceConsumptionForLifetime: CalculatorService.calculateElectricityDeviceConsumptionForLifetime(uncalculatedDevice),
       electricityDeviceCostForLifetime: CalculatorService.calculateElectricityDeviceCostForLifetime(uncalculatedDevice),
-      carbonFootprint: CalculatorService.calculateEnergyEfficiency(uncalculatedDevice),
+      carbonFootprint: CalculatorService.calculateCarbonFootprint(uncalculatedDevice),
       energyEfficiency: CalculatorService.calculateEnergyEfficiency(uncalculatedDevice)
     }
 
