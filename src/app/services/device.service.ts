@@ -17,8 +17,11 @@ export class DeviceService {
 
   deleteDevice(device: IDevice) {
     let devices = this.fetchDevices();
-    let deviceIndex = devices.indexOf(device);
+    let deviceIndex = devices.findIndex(deviceFromList => {
+      return deviceFromList.name === device.name;
+    });
 
+    console.log(deviceIndex)
     if (deviceIndex > -1) {
       devices.splice(deviceIndex, 1);
     }

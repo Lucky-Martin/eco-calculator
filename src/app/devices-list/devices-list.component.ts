@@ -17,6 +17,11 @@ export class DevicesListComponent implements OnInit {
     this.devices = this.deviceService.fetchDevices();
   }
 
+  onDelete(device: IDevice) {
+    this.deviceService.deleteDevice(device);
+    this.devices = this.deviceService.fetchDevices();
+  }
+
   getDeviceTypeInLocalLanguage(deviceType: TDeviceType) {
     switch (deviceType) {
       case 'refrigerator':
