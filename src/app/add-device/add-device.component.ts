@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IDeviceFootprintData} from "../models/device.model";
-import {CalculatorService} from "../calculator/calculator.service";
+import {CalculatorService} from "../services/calculator.service";
 import {DeviceService} from "../services/device.service";
 import {MatStepper} from "@angular/material/stepper";
 
