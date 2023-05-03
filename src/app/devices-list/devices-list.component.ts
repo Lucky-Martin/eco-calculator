@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DeviceService} from "../services/device.service";
-import {IDevice} from "../models/device.model";
+import {IDevice, TDeviceType} from "../models/device.model";
 
 
 @Component({
@@ -15,6 +15,41 @@ export class DevicesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.devices = this.deviceService.fetchDevices();
+  }
+
+  getDeviceTypeInLocalLanguage(deviceType: TDeviceType) {
+    switch (deviceType) {
+      case 'refrigerator':
+        return 'хладилник';
+        break;
+      case 'stove':
+        return 'печка';
+        break;
+      case "air conditioner":
+        return 'климатик';
+        break;
+      case "boiler":
+        return 'бойлер';
+        break;
+      case "computer":
+        return 'компютър';
+        break;
+      case "dishwasher":
+        return 'съдомиална';
+        break;
+      case "dryer":
+        return 'сушилня';
+        break;
+      case "microwave":
+        return 'микровълнова';
+        break;
+      case "printer":
+        return 'принтер';
+        break;
+      case "washing machine":
+        return 'пералня';
+        break;
+    }
   }
 
 }

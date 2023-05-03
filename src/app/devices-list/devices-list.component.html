@@ -6,8 +6,8 @@
     <mat-list>
       <mat-list-item *ngFor="let device of devices">
         <mat-icon mat-list-icon>computer</mat-icon>
-        <h4 mat-line>{{device}}</h4>
-        <p mat-line>{{device.typeOfDevice}}</p>
+        <h4 mat-line>{{device.name}}</h4>
+        <p mat-line>{{getDeviceTypeInLocalLanguage(device.typeOfDevice)}}</p>
         <button mat-icon-button color="primary" aria-label="Edit">
           <mat-icon>edit</mat-icon>
         </button>
