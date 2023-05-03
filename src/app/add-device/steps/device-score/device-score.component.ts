@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import {IDeviceFootprintData} from "../../../models/device.model";
 
 @Component({
@@ -6,23 +6,30 @@ import {IDeviceFootprintData} from "../../../models/device.model";
   templateUrl: './device-score.component.html',
   styleUrls: ['./device-score.component.css']
 })
-export class DeviceScoreComponent implements OnInit {
+export class DeviceScoreComponent implements OnInit, OnChanges {
   @Input('carbonFootprint') footprint!: IDeviceFootprintData;
   displayedColumns: string[] = ['criteria', 'value'];
   dataSource!: {}[];
   constructor() { }
 
   ngOnInit(): void {
+    this.calculateDataSource();
+  }
+
+  ngOnChanges() {
+    this.calculateDataSource();
+  }
+
+  private calculateDataSource() {
     if (this.footprint) {
       this.dataSource = [
-        {criteria: 'Консумация на електроенергия на месец', value: this.footprint.electricityConsummationPerMonth},
-        {criteria: 'Разход за ел. енергия на месец', value: this.footprint.electricityDeviceCostForMonth},
-        {criteria: 'Разход на ел. енергия за целия живот на стоката', value: this.footprint.electricityDeviceConsumptionForLifetime},
-        {criteria: 'Разход за ел. енергия за целия живот на стоката ', value: this.footprint.electricityDeviceCostForLifetime},
-        {criteria: 'Въглероден отпечатък на ползване', value: this.footprint.carbonFootprint},
+        {criteria: 'Консумация на електроенергия на месец', value: `${this.footprint.electricityConsummationPerMonth} кВч`},
+        {criteria: 'Разход за ел. енергия на месец', value: `${this.footprint.electricityDeviceCostForMonth} лв`},
+        {criteria: 'Разход на ел. енергия за целия живот на стоката', value: `${this.footprint.electricityDeviceConsumptionForLifetime} кВч`},
+        {criteria: 'Разход за ел. енергия за целия живот на стоката ', value: `${this.footprint.electricityDeviceCostForLifetime} лв`},
+        {criteria: 'Въглероден отпечатък на ползване', value: `${this.footprint.carbonFootprint} C02/кВч`},
         {criteria: 'Енергийна ефективност', value: this.footprint.energyEfficiency}
       ]
     }
   }
-
 }

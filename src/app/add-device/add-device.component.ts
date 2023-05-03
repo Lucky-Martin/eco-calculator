@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {IDeviceFootprintData} from "../models/device.model";
+import { Device, IDevice, IDeviceFootprintData } from "../models/device.model";
 import {CalculatorService} from "../services/calculator.service";
 import {DeviceService} from "../services/device.service";
 import {MatStepper} from "@angular/material/stepper";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-device',
@@ -12,11 +12,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./add-device.component.css']
 })
 export class AddDeviceComponent implements OnInit {
+  @ViewChild('stepper') stepper!: MatStepper;
   deviceData: FormGroup;
   deviceFootprint!: IDeviceFootprintData;
   deviceUsage: number = 0;
   sessionLoaded: boolean = false;
-  @ViewChild('stepper') stepper!: MatStepper;
+  private device!: IDevice;
+  private deviceUUID!: string;
 
   constructor(private formBuilder: FormBuilder,
               private calculatorService: CalculatorService,
@@ -34,7 +36,8 @@ export class AddDeviceComponent implements OnInit {
   ngOnInit() {
     const deviceDataJSON = sessionStorage.getItem('add-device');
     if (deviceDataJSON) {
-      const {name, typeOfDevice, power, energyClass, warrantyInMonths, workingHours} = JSON.parse(deviceDataJSON);
+      const {uuid, name, typeOfDevice, power, energyClass, warrantyInMonths, workingHours} = JSON.parse(deviceDataJSON);
+      this.deviceUUID = uuid;
       this.deviceData.setValue({
         name, power, energyClass,
         deviceType: typeOfDevice,
@@ -49,13 +52,15 @@ export class AddDeviceComponent implements OnInit {
     let {name, power, energyClass, deviceType, warranty} = this.getInputData();
     const device = {
       energyClass, name, power,
+      uuid: this.deviceUUID,
+      carbonFootprint: this.deviceFootprint,
       typeOfDevice: deviceType,
       warrantyInMonths: warranty,
       workingHours: this.deviceUsage
     };
 
     if (this.sessionLoaded) {
-      // TODO: Add update for device
+      this.deviceService.updateDevice(device);
     } else {
       this.deviceService.addDevice(device);
     }
@@ -63,6 +68,17 @@ export class AddDeviceComponent implements OnInit {
     this.deviceData.reset();
     this.stepper.reset();
     await this.router.navigateByUrl('list');
+  }
+
+  calculateFootprint() {
+    const {name, deviceType, power, energyClass, warranty} = this.getInputData();
+    this.device = new Device({
+      energyClass, name, power,
+      typeOfDevice: deviceType,
+      warrantyInMonths: warranty,
+      workingHours: this.deviceUsage
+    });
+    this.deviceFootprint = this.device.carbonFootprint;
   }
 
   private getInputData() {
