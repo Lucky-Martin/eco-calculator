@@ -20,7 +20,6 @@ export class CalculatorService {
 
   setDevice(newDevice: INewDevice){
     this.device = newDevice;
-    console.log(this.device)
   }
 
   calculateEverything() {
@@ -32,9 +31,7 @@ export class CalculatorService {
   }
 
   calculateElectricityConsummationPerMonth() {
-
     const energyConsumption = this.device.workingHours * this.device.power;
-    console.log(this.device)
     this.electricityConsummationPerMonth.next(energyConsumption);
     return energyConsumption;
   }

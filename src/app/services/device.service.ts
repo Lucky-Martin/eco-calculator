@@ -15,13 +15,22 @@ export class DeviceService {
     this.saveDevices(devices);
   }
 
+  editDevice(device: IDevice) {
+    let devices = this.fetchDevices();
+    let deviceIndex = devices.findIndex(deviceFromList => {
+      return deviceFromList.name === device.name;
+    });
+
+    devices[deviceIndex] = device;
+    this.saveDevices(devices);
+  }
+
   deleteDevice(device: IDevice) {
     let devices = this.fetchDevices();
     let deviceIndex = devices.findIndex(deviceFromList => {
       return deviceFromList.name === device.name;
     });
 
-    console.log(deviceIndex)
     if (deviceIndex > -1) {
       devices.splice(deviceIndex, 1);
     }

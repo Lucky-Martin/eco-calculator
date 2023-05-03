@@ -9,7 +9,7 @@
         <mat-icon mat-list-icon>computer</mat-icon>
         <h4 mat-line>{{device.name}}</h4>
         <p mat-line>{{getDeviceTypeInLocalLanguage(device.typeOfDevice)}}</p>
-        <button mat-icon-button color="primary" aria-label="Edit">
+        <button mat-icon-button color="primary" aria-label="Edit" (click)="onEditDevice(device)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="accent" aria-label="Compare">
@@ -27,4 +27,3 @@
   <span class="default-text">+</span>
   <span class="hover-text">Добави</span>
 </div>
-
