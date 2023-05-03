@@ -5,8 +5,8 @@ export enum CostPerKilowattHour {
   EVNBulgariaDay = 0.10917,
   EVNBulgariaNight = 0.02115,
 
-  EnergoProDay = 0.10917,
-  EnergoProNight = 0.10917,
+  EnergoProDay = 0.11311,
+  EnergoProNight = 0.02017,
 
   ESPGoldenSandsDay = 0.10429,
   ESPGoldenSandsNight = 0.04557,
