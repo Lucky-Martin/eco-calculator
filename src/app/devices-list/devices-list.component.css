@@ -7,14 +7,6 @@ mat-card {
 mat-card mat-card-content mat-form-field {
   width: 100%;
 }
-.two_arrows{
-  color: darkorange;
+mat-card-title {
+  margin-top: 12px;
 }
-.trash_can{
-  color: red;
-}
-.edit_pencil{
-  color: blue;
-}
-
-
