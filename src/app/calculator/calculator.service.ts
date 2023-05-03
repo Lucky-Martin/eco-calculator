@@ -7,9 +7,7 @@ import { DomesticClientType } from "../models/domesticClients.model";
   providedIn: 'root'
 })
 export class CalculatorService {
-
   private device!: INewDevice;
-
   electricityConsummationPerMonth = new Subject<number>();
   electricityDeviceCostForMonth = new Subject<number>();
   electricityDeviceConsumptionForLifetime = new Subject<number>();
@@ -21,6 +19,7 @@ export class CalculatorService {
 
   setDevice(newDevice: INewDevice){
     this.device = newDevice;
+    console.log(this.device)
   }
 
   calculateEverything() {
@@ -32,37 +31,44 @@ export class CalculatorService {
   }
 
   calculateElectricityConsummationPerMonth() {
-    const energyConsumption = this.device.hoursPerMonth * this.device.power;
+
+    const energyConsumption = this.device.workingHours * this.device.power;
+    console.log(this.device)
     this.electricityConsummationPerMonth.next(energyConsumption);
+    return energyConsumption;
   }
 
   calculateElectricityDeviceCostForMonth() {
-    const monthlyEnergyConsumption = this.device.hoursPerMonth * this.device.power;
-    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
+    const monthlyEnergyConsumption = this.device.workingHours * this.device.power;
+    const annualEnergyConsumption = this.device.power * this.device.workingHours * 12;
     const monthlyEnergyConsumptionPerMonth = monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
 
     this.electricityDeviceCostForMonth.next(monthlyEnergyConsumptionPerMonth);
+    return monthlyEnergyConsumptionPerMonth;
   }
 
   calculateElectricityDeviceConsumptionForLifetime() {
-    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
-
+    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
     this.electricityDeviceConsumptionForLifetime.next(lifetimeEnergyConsumption);
+    return lifetimeEnergyConsumption;
   }
   calculateElectricityDeviceCostForLifetime() {
-    const annualEnergyConsumption = this.device.power * this.device.hoursPerMonth * 12;
-    const lifetimeEnergyConsumption = this.device.power * this.device.hoursPerMonth * this.device.warrantyInMonths;
+    const annualEnergyConsumption = this.device.power * this.device.workingHours * 12;
+    const lifetimeEnergyConsumption = this.device.power * this.device.workingHours * this.device.warrantyInMonths;
     const lifetimeEnergyConsumptionConst = lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
 
     this.electricityDeviceCostForLifetime.next(lifetimeEnergyConsumptionConst);
+    return lifetimeEnergyConsumptionConst;
   }
 
   calculateCarbonFootprint() {
     this.carbonFootprint.next(1);
+    return 1;
   }
 
   calculateEnergyEfficiency() {
     this.energyEfficiency.next(1);
+    return 1;
   }
 
   private domesticClientType(annualEnergyConsumption: number): DomesticClientType {
