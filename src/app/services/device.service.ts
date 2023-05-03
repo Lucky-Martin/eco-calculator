@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IDevice } from "../models/device.model";
+import {Device, IDevice, INewDevice} from "../models/device.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,9 @@ export class DeviceService {
   private storageId: string = 'devices';
   constructor() { }
 
-  addDevice(device: IDevice) {
+  addDevice(newDevice: INewDevice) {
     let devices = this.fetchDevices();
+    const device = new Device(newDevice);
     devices.push(device);
     this.saveDevices(devices);
   }

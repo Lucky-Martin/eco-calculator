@@ -10,20 +10,20 @@ export class CalculatorService {
 
   constructor() { }
 
-  calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
+  static calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
     return newDevice.workingHours * newDevice.power;
   }
 
-  calculateElectricityDeviceCostForMonth(newDevice: INewDevice) {
+  static calculateElectricityDeviceCostForMonth(newDevice: INewDevice) {
     const monthlyEnergyConsumption = newDevice.workingHours * newDevice.power;
     const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
-    return monthlyEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
+    return monthlyEnergyConsumption * CalculatorService.domesticClientType(annualEnergyConsumption);
   }
 
-  calculateElectricityDeviceConsumptionForLifetime(newDevice: INewDevice) {
+  static calculateElectricityDeviceConsumptionForLifetime(newDevice: INewDevice) {
     return newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
   }
-  calculateElectricityDeviceCostForLifetime(newDevice: INewDevice) {
+  static calculateElectricityDeviceCostForLifetime(newDevice: INewDevice) {
     const annualEnergyConsumption = newDevice.power * newDevice.workingHours * 12;
     const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
     return lifetimeEnergyConsumption * this.domesticClientType(annualEnergyConsumption);
@@ -32,16 +32,16 @@ export class CalculatorService {
   /**
    * @returns the carbon footprint for the device lifetime in kilograms
    * */
-  calculateCarbonFootprint(newDevice: INewDevice) {
+  static calculateCarbonFootprint(newDevice: INewDevice) {
     const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
     return (lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000;
   }
 
-  calculateEnergyEfficiency(newDevice: INewDevice) {
+  static calculateEnergyEfficiency(newDevice: INewDevice) {
     return 1;
   }
 
-  private domesticClientType(annualEnergyConsumption: number): DomesticClientType {
+  private static domesticClientType(annualEnergyConsumption: number): DomesticClientType {
     if (annualEnergyConsumption < 1_000) return DomesticClientType.D1
     else if (annualEnergyConsumption < 2_500) return DomesticClientType.D2
     else if (annualEnergyConsumption < 5_000) return DomesticClientType.D3
