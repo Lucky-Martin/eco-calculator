@@ -12,3 +12,29 @@ mat-card mat-card-content mat-form-field {
 mat-card-title {
   margin-top: 12px;
 }
+
+.upward-select .mat-select-panel {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+mat-card-content {
+  width: 25%;
+  height: 100%;
+  position: relative;
+}
+mat-form-field{
+  position: absolute;
+  bottom: 40px;
+}
+
+.overlay-select2{
+  position: absolute;
+  bottom: 40px;
+  padding-left: 25% ;
+}

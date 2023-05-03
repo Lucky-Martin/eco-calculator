@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CalculatorService} from "../services/calculator.service";
+import {DeviceService} from "../services/device.service";
 
 @Component({
   selector: 'app-compare-devices',
@@ -7,9 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompareDevicesComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
 
-}
+  }
