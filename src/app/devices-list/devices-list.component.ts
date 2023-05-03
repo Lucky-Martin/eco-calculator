@@ -7,7 +7,7 @@ import {IDevice} from "../models/device.model";
   selector: 'app-devices-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.css']
-g})
+})
 export class DevicesListComponent implements OnInit {
   devices: IDevice[] = [];
 
