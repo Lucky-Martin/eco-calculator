@@ -28,32 +28,11 @@ export class AddDeviceComponent {
     });
   }
 
-  calculateFootprint() {
-    let {name, power, energyClass, deviceType, warranty} = this.getInputData();
-
-    this.calculatorService.setDevice({
-      energyClass, name, power,
-      typeOfDevice: deviceType,
-      warrantyInMonths: warranty,
-      workingHours: this.deviceUsage
-    });
-
-    this.deviceFootprint = {
-      carbonFootprint: this.calculatorService.calculateCarbonFootprint(),
-      electricityConsummationPerMonth: this.calculatorService.calculateElectricityConsummationPerMonth(),
-      electricityDeviceConsumptionForLifetime: this.calculatorService.calculateElectricityDeviceConsumptionForLifetime(),
-      electricityDeviceCostForLifetime: this.calculatorService.calculateElectricityDeviceCostForLifetime(),
-      electricityDeviceCostForMonth: this.calculatorService.calculateElectricityDeviceCostForMonth(),
-      energyEfficiency: this.calculatorService.calculateEnergyEfficiency()
-    }
-  }
-
   saveDevice() {
     let {name, power, energyClass, deviceType, warranty} = this.getInputData();
 
     this.deviceService.addDevice({
       energyClass, name, power,
-      carbonFootprint: this.deviceFootprint,
       typeOfDevice: deviceType,
       warrantyInMonths: warranty,
       workingHours: this.deviceUsage
