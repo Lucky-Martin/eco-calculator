@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {IDevice} from "../../models/device.model";
-import {getDeviceTypeInLocalLanguage} from "../../services/getDeviceTypeInLocalLanguage";
+import {getDeviceTypeInLocalLanguage} from "../../functions/getDeviceTypeInLocalLanguage";
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material/tree";
 

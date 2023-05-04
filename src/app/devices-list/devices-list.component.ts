@@ -4,7 +4,7 @@ import {IDevice} from "../models/device.model";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeviceFootprintPreviewComponent} from "./dialogs/device-footprint-preview/device-footprint-preview.component";
-import {getDeviceTypeInLocalLanguage} from "../services/getDeviceTypeInLocalLanguage";
+import {getDeviceTypeInLocalLanguage} from "../functions/getDeviceTypeInLocalLanguage";
 
 @Component({
   selector: 'app-devices-list',
