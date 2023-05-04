@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {IDevice} from "../../models/device.model";
 
 @Component({
@@ -6,13 +6,11 @@ import {IDevice} from "../../models/device.model";
   templateUrl: './select-device.component.html',
   styleUrls: ['./select-device.component.css']
 })
-export class SelectDeviceComponent implements OnInit {
+export class SelectDeviceComponent {
   @Input('devices') devices!: IDevice[];
   @Output('deviceSelect') deviceSelect: EventEmitter<string> = new EventEmitter<string>();
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor() { }
 
   onSelectDevice(uuid: string) {
     this.deviceSelect.emit(uuid);

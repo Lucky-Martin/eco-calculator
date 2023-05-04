@@ -65,7 +65,7 @@ export class DeviceInfoComponent implements OnInit, OnChanges {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.dataSource.data = [
       {
-        name: 'Характеристика на уред',
+        name: 'Характеристика на уреда',
         children: [
           {name: `Име на уреда - ${this.device.name}`},
           {name: `Вид на устройството - ${getDeviceTypeInLocalLanguage(this.device.typeOfDevice)}`},
@@ -75,7 +75,7 @@ export class DeviceInfoComponent implements OnInit, OnChanges {
         ],
       },
       {
-        name: 'Раход на енергия и отпечатък',
+        name: 'Разход на енергия и отпечатък',
         children: [
           {name: `Консумация на електроенергия за периода ${this.device.carbonFootprint.electricityConsummationPerMonth} кВч`},
           {name: `Разход за ел. енергия на периода ${this.device.carbonFootprint.electricityDeviceCostForMonth} лв`},

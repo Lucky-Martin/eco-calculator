@@ -7,3 +7,7 @@
 mat-form-field {
   width: 100%;
 }
+.grid-container {
+  display: flex;
+  width: 100%;
+}
