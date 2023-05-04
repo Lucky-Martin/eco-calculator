@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DeviceService} from "../services/device.service";
-import {IDevice} from '../models/device.model';
+import {Devices, IDevice} from '../models/device.model';
 
 @Component({
   selector: 'app-compare-devices',
@@ -8,7 +8,7 @@ import {IDevice} from '../models/device.model';
   styleUrls: ['./compare-devices.component.css']
 })
 export class CompareDevicesComponent implements OnInit {
-  devices!: IDevice[];
+  devices!: Devices;
   firstDevice!: IDevice | null;
   secondDevice!: IDevice | null;
   reset = false;

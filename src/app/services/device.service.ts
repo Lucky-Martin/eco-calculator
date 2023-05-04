@@ -52,7 +52,7 @@ export class DeviceService {
     return this.convertInterfacesToClassesDevice(localDevicesList);
   }
 
-  compareDevice(firstDevice: IDevice, secondDevice: IDevice) {
+  compareDevice(firstDevice: IDevice | null, secondDevice: IDevice | null) {
     if (!firstDevice || !secondDevice) return;
     else if (firstDevice.typeOfDevice !== secondDevice.typeOfDevice) return;
 
