@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DeviceService} from "../services/device.service";
 import {IDevice, TDeviceType} from "../models/device.model";
 import {Router} from "@angular/router";
-
+import {MatDialog} from "@angular/material/dialog";
+import {DeviceFootprintPreviewComponent} from "./dialogs/device-footprint-preview/device-footprint-preview.component";
 
 @Component({
   selector: 'app-devices-list',
@@ -13,7 +14,8 @@ export class DevicesListComponent implements OnInit {
   devices: IDevice[] = [];
 
   constructor(private deviceService: DeviceService,
-              private router: Router) { }
+              private router: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.devices = this.deviceService.fetchDevices();
@@ -47,6 +49,14 @@ export class DevicesListComponent implements OnInit {
       case "washing machine":
         return 'пералня';
     }
+  }
+
+  async onPreviewDeviceInfo(device: IDevice) {
+    this.dialog.open(DeviceFootprintPreviewComponent, {
+      maxWidth: '90vw',
+      width: '100%',
+      data: {deviceFootprint: device.carbonFootprint}
+    });
   }
 
   async onEditDevice(device: IDevice) {

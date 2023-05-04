@@ -26,6 +26,8 @@ import { DeviceDataComponent } from './add-device/steps/device-data/device-data.
 import { DeviceUsageComponent } from './add-device/steps/device-usage/device-usage.component';
 import { DeviceScoreComponent } from './add-device/steps/device-score/device-score.component';
 import {MatTableModule} from "@angular/material/table";
+import { DeviceFootprintPreviewComponent } from './devices-list/dialogs/device-footprint-preview/device-footprint-preview.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -36,29 +38,31 @@ import {MatTableModule} from "@angular/material/table";
     CompareDevicesComponent,
     DeviceDataComponent,
     DeviceUsageComponent,
-    DeviceScoreComponent
+    DeviceScoreComponent,
+    DeviceFootprintPreviewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        MatGridListModule,
-        MatSlideToggleModule,
-        BrowserAnimationsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatCardModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatExpansionModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatListModule,
-        FormsModule,
-        MatTableModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    FormsModule,
+    MatTableModule,
+    MatDialogModule,
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -23,8 +23,8 @@ export class DeviceScoreComponent implements OnInit, OnChanges {
   private calculateDataSource() {
     if (this.footprint) {
       this.dataSource = [
-        {criteria: 'Консумация на електроенергия на месец', value: `${this.footprint.electricityConsummationPerMonth} кВч`},
-        {criteria: 'Разход за ел. енергия на месец', value: `${this.footprint.electricityDeviceCostForMonth} лв`},
+        {criteria: 'Консумация на електроенергия за периода', value: `${this.footprint.electricityConsummationPerMonth} кВч`},
+        {criteria: 'Разход за ел. енергия на периода', value: `${this.footprint.electricityDeviceCostForMonth} лв`},
         {criteria: 'Разход на ел. енергия за целия живот на стоката', value: `${this.footprint.electricityDeviceConsumptionForLifetime} кВч`},
         {criteria: 'Разход за ел. енергия за целия живот на стоката ', value: `${this.footprint.electricityDeviceCostForLifetime} лв`},
         {criteria: 'Въглероден отпечатък на ползване', value: `${this.footprint.carbonFootprint} C02/кВч`},
