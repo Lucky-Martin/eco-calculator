@@ -11,6 +11,8 @@ export class CompareDevicesComponent implements OnInit {
   devices!: IDevice[];
   firstDevice!: IDevice | null;
   secondDevice!: IDevice | null;
+  firstDeviceHighlight!: string[] | null;
+  secondDeviceHighlight!: string[] | null;
   reset = false;
   private allDevices!: IDevice[];
 
@@ -41,12 +43,18 @@ export class CompareDevicesComponent implements OnInit {
       }
     }
 
-    console.log(this.deviceService.compareDevice(this.firstDevice!, this.secondDevice!));
+    const diff = this.deviceService.compareDevice(this.firstDevice!, this.secondDevice!);
+    if (diff) {
+      this.firstDeviceHighlight = diff.betterInFirstDevice;
+      this.secondDeviceHighlight = diff.betterInSecondDevice;
+    }
   }
 
   clearDevices() {
     this.firstDevice = null;
+    this.firstDeviceHighlight = null;
     this.secondDevice = null;
+    this.secondDeviceHighlight = null;
     this.reset = true;
     this.devices = this.deviceService.fetchDevices();
 

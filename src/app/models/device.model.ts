@@ -19,12 +19,12 @@ export type DeviceProp =
   | "energyClass"
   | "warrantyInMonths"
   | "workingHours"
-  | "carbonFootprint.electricityConsummationPerMonth"
-  | "carbonFootprint.electricityDeviceCostForMonth"
-  | "carbonFootprint.electricityDeviceConsumptionForLifetime"
-  | "carbonFootprint.electricityDeviceCostForLifetime"
-  | "carbonFootprint.carbonFootprint"
-  | "carbonFootprint.energyEfficiency";
+  | "electricityConsummationPerMonth"
+  | "electricityDeviceCostForMonth"
+  | "electricityDeviceConsumptionForLifetime"
+  | "electricityDeviceCostForLifetime"
+  | "carbonFootprint"
+  | "energyEfficiency";
 export type DeviceProps = DeviceProp[];
 
 export type IDevices = IDevice[];

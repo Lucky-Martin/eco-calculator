@@ -3,7 +3,7 @@
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
         <button mat-icon-button disabled></button>
-        {{node.name}}
+        <p [ngClass]="{'better': !!node.highlight, 'worse': !node.highlight}">{{node.name}}</p>
       </mat-tree-node>
       <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
         <button mat-icon-button matTreeNodeToggle

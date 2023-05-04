@@ -1,3 +1,6 @@
 .device-info {
   height: 80%;
 }
+.device-info p.better {
+  color: #33A357;
+}

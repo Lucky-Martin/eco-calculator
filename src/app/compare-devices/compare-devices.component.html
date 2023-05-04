@@ -6,11 +6,11 @@
   <mat-card-content *ngIf="!reset">
     <div class="grid-container">
       <div class="grid-col padding-right">
-        <app-device-info [device]="firstDevice!"></app-device-info>
+        <app-device-info [device]="firstDevice!" [highlightFields]="firstDeviceHighlight!"></app-device-info>
         <app-select-device [devices]="devices" (deviceSelect)="onSelectDevice($event, 1)"></app-select-device>
       </div>
       <div class="grid-col padding-left">
-        <app-device-info [device]="secondDevice!"></app-device-info>
+        <app-device-info [device]="secondDevice!" [highlightFields]="secondDeviceHighlight!"></app-device-info>
         <app-select-device [devices]="devices" (deviceSelect)="onSelectDevice($event, 2)"></app-select-device>
       </div>
     </div>

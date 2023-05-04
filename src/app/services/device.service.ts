@@ -76,23 +76,23 @@ export class DeviceService {
             if(EnergyClass[firstValue] < EnergyClass[secondValue]) betterInFirstDevice.push("energyClass")
             else if (EnergyClass[firstValue] > EnergyClass[secondValue]) betterInSecondDevice.push("energyClass")
           } else if (firstKey === "carbonFootprint") {
-            if (firstValue.electricityConsummationPerMonth < secondValue.electricityConsummationPerMonth) betterInFirstDevice.push("carbonFootprint.electricityConsummationPerMonth");
-            else if (firstValue.electricityConsummationPerMonth > secondValue.electricityConsummationPerMonth) betterInSecondDevice.push("carbonFootprint.electricityConsummationPerMonth");
+            if (firstValue.electricityConsummationPerMonth < secondValue.electricityConsummationPerMonth) betterInFirstDevice.push("electricityConsummationPerMonth");
+            else if (firstValue.electricityConsummationPerMonth > secondValue.electricityConsummationPerMonth) betterInSecondDevice.push("electricityConsummationPerMonth");
 
-            if (firstValue.electricityDeviceCostForMonth < secondValue.electricityDeviceCostForMonth) betterInFirstDevice.push("carbonFootprint.electricityDeviceCostForMonth");
-            else if (firstValue.electricityDeviceCostForMonth > secondValue.electricityDeviceCostForMonth) betterInSecondDevice.push("carbonFootprint.electricityDeviceCostForMonth");
+            if (firstValue.electricityDeviceCostForMonth < secondValue.electricityDeviceCostForMonth) betterInFirstDevice.push("electricityDeviceCostForMonth");
+            else if (firstValue.electricityDeviceCostForMonth > secondValue.electricityDeviceCostForMonth) betterInSecondDevice.push("electricityDeviceCostForMonth");
 
-            if (firstValue.electricityDeviceConsumptionForLifetime < secondValue.electricityDeviceConsumptionForLifetime) betterInFirstDevice.push("carbonFootprint.electricityDeviceConsumptionForLifetime");
-            else if (firstValue.electricityDeviceConsumptionForLifetime > secondValue.electricityDeviceConsumptionForLifetime) betterInSecondDevice.push("carbonFootprint.electricityDeviceConsumptionForLifetime");
+            if (firstValue.electricityDeviceConsumptionForLifetime < secondValue.electricityDeviceConsumptionForLifetime) betterInFirstDevice.push("electricityDeviceConsumptionForLifetime");
+            else if (firstValue.electricityDeviceConsumptionForLifetime > secondValue.electricityDeviceConsumptionForLifetime) betterInSecondDevice.push("electricityDeviceConsumptionForLifetime");
 
-            if (firstValue.electricityDeviceCostForLifetime < secondValue.electricityDeviceCostForLifetime) betterInFirstDevice.push("carbonFootprint.electricityDeviceCostForLifetime");
-            else if (firstValue.electricityDeviceCostForLifetime > secondValue.electricityDeviceCostForLifetime) betterInSecondDevice.push("carbonFootprint.electricityDeviceCostForLifetime");
+            if (firstValue.electricityDeviceCostForLifetime < secondValue.electricityDeviceCostForLifetime) betterInFirstDevice.push("electricityDeviceCostForLifetime");
+            else if (firstValue.electricityDeviceCostForLifetime > secondValue.electricityDeviceCostForLifetime) betterInSecondDevice.push("electricityDeviceCostForLifetime");
 
-            if (firstValue.carbonFootprint < secondValue.carbonFootprint) betterInFirstDevice.push("carbonFootprint.carbonFootprint");
-            else if (firstValue.carbonFootprint > secondValue.carbonFootprint) betterInSecondDevice.push("carbonFootprint.carbonFootprint");
+            if (firstValue.carbonFootprint < secondValue.carbonFootprint) betterInFirstDevice.push("carbonFootprint");
+            else if (firstValue.carbonFootprint > secondValue.carbonFootprint) betterInSecondDevice.push("carbonFootprint");
 
-            if(EnergyClass[firstValue.energyEfficiency] < EnergyClass[secondValue.energyEfficiency]) betterInFirstDevice.push("carbonFootprint.energyEfficiency")
-            else if (EnergyClass[firstValue.energyEfficiency] > EnergyClass[secondValue.energyEfficiency]) betterInSecondDevice.push("carbonFootprint.energyEfficiency")
+            if(EnergyClass[firstValue.energyEfficiency] < EnergyClass[secondValue.energyEfficiency]) betterInFirstDevice.push("energyEfficiency")
+            else if (EnergyClass[firstValue.energyEfficiency] > EnergyClass[secondValue.energyEfficiency]) betterInSecondDevice.push("energyEfficiency")
 
           }
         }
