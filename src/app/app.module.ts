@@ -28,6 +28,8 @@ import { DeviceScoreComponent } from './add-device/steps/device-score/device-sco
 import {MatTableModule} from "@angular/material/table";
 import { DeviceFootprintPreviewComponent } from './devices-list/dialogs/device-footprint-preview/device-footprint-preview.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { DeviceInfoComponent } from './compare-devices/device-info/device-info.component';
+import { SelectDeviceComponent } from './compare-devices/select-device/select-device.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     DeviceDataComponent,
     DeviceUsageComponent,
     DeviceScoreComponent,
-    DeviceFootprintPreviewComponent
+    DeviceFootprintPreviewComponent,
+    DeviceInfoComponent,
+    SelectDeviceComponent
   ],
   imports: [
     BrowserModule,

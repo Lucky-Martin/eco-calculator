@@ -1,0 +1,4 @@
+.device-info {
+  height: calc(80% - 40px);
+  padding-top: 40px;
+}

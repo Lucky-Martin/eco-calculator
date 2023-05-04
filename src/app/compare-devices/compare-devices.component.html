@@ -3,28 +3,12 @@
     <mat-card-title>Сравни устройства</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-grid-list cols="3" rowHeight="2:1" *ngIf="devices">
-      <mat-grid-tile class="border-right">
-        <mat-form-field appearance="fill">
-          <mat-label>Избери електроуред</mat-label>
-          <mat-select [formControl]="firstDeviceInput" (valueChange)="onSelectFirstDevice($event)">
-            <mat-option *ngFor="let device of devices" [value]="device.uuid">
-              {{device.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-form-field appearance="fill">
-          <mat-label>Избери електроуред</mat-label>
-          <mat-select [formControl]="secondDeviceInput" (valueChange)="onSelectSecondDevice($event)">
-            <mat-option *ngFor="let device of devices" [value]="device.uuid">
-              {{device.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile class="border-left">3</mat-grid-tile>
-    </mat-grid-list>
+    <div class="grid-container">
+      <div class="grid-col">
+        <app-device-info></app-device-info>
+        <app-select-device [devices]="devices" (deviceSelect)="onSelectFirstDevice($event)"></app-select-device>
+      </div>
+      <div class="grid-col"></div>
+    </div>
   </mat-card-content>
 </mat-card>

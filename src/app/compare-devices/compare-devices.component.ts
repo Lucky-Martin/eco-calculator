@@ -10,17 +10,10 @@ import { FormControl } from "@angular/forms";
 })
 export class CompareDevicesComponent implements OnInit {
   devices!: IDevice[];
-  firstDeviceInput: FormControl
-  secondDeviceInput: FormControl;
-
   firstDevice!: IDevice;
   secondDevice!: IDevice;
 
-
-  constructor(private deviceService: DeviceService) {
-    this.firstDeviceInput = new FormControl();
-    this.secondDeviceInput = new FormControl();
-  }
+  constructor(private deviceService: DeviceService) { }
 
   ngOnInit(): void {
     this.devices = this.deviceService.fetchDevices();

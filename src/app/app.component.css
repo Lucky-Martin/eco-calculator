@@ -3,9 +3,10 @@ mat-toolbar button {
 }
 mat-sidenav-container {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 64px);
 }
 mat-sidenav-container mat-sidenav {
   min-width: 20%;
   max-width: 316px;
+  height: 100%;
 }
