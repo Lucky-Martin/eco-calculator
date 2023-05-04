@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class DeviceUsageComponent {
   @Input() hoursUsed!: number;
   @Output() hoursUsedChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() calculateEfficiency = new EventEmitter<undefined>();
 
   constructor() { }
 
@@ -16,5 +17,7 @@ export class DeviceUsageComponent {
     this.hoursUsedChange.emit(this.hoursUsed);
   }
 
-  protected readonly Math = Math;
+  submitForm() {
+    this.calculateEfficiency.emit();
+  }
 }

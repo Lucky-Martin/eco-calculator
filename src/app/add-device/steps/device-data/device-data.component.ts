@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,11 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './device-data.component.html',
   styleUrls: ['./device-data.component.css']
 })
-export class DeviceDataComponent implements OnInit, OnChanges {
+export class DeviceDataComponent implements OnInit {
   @Input('deviceData') deviceData!: FormGroup;
-  @Output('deviceDataChange') deviceDataChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  ngOnChanges() {
-    this.deviceDataChange.emit(this.deviceData);
-  }
-
 }
