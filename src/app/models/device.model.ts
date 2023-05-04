@@ -4,6 +4,9 @@ import {CalculatorService} from "../services/calculator.service";
 export type TEnergyClass = "APP"| "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
 export type TDeviceType = "refrigerator" | "stove" | "air conditioner" | "microwave" | "washing machine" | "dryer" | "dishwasher" | "computer" | "printer" | "boiler";
 
+export type IDevices = IDevice[];
+export type Devices = Device[];
+
 export interface IDevice {
   readonly uuid: string;
   name: string;
@@ -39,8 +42,9 @@ export class Device implements IDevice {
 
 
 
-  constructor(newDevice: INewDevice) {
-    this.uuid = generateUID();
+  constructor(newDevice: INewDevice | IDevice) {
+    if("uuid" in newDevice) this.uuid = newDevice.uuid;
+    else this.uuid = generateUID();
 
     this.name = newDevice.name;
     this.typeOfDevice = newDevice.typeOfDevice;

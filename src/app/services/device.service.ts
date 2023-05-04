@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Device, IDevice, INewDevice} from "../models/device.model";
+import {Injectable} from '@angular/core';
+import {Device, Devices, IDevice, IDevices, INewDevice} from "../models/device.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,45 +11,42 @@ export class DeviceService {
 
   getDevice(uuid: string){
     const devices = this.fetchDevices();
-    return devices.find((value) => value.uuid === uuid);
+    return devices.find(value => value.uuid === uuid);
   }
 
   addDevice(newDevice: INewDevice) {
-    let devices = this.fetchDevices();
+    const devices = this.fetchDevices();
     const device = new Device(newDevice);
     devices.push(device);
     this.saveDevices(devices);
   }
 
   updateDevice(device: IDevice) {
-    let devices = this.fetchDevices();
-    let deviceIndex = devices.findIndex(deviceFromList => deviceFromList.uuid === device.uuid);
+    const devices = this.fetchDevices();
+    const deviceIndex = devices.findIndex(deviceFromList => deviceFromList.uuid === device.uuid);
 
-    devices[deviceIndex] = device;
+    devices[deviceIndex].UpdateDevice(device);
     this.saveDevices(devices);
   }
 
   deleteDevice(device: IDevice) {
-    let devices = this.fetchDevices();
-    let deviceIndex = devices.findIndex(deviceFromList => deviceFromList.uuid === device.uuid);
-
-    if (deviceIndex > -1) {
-      devices.splice(deviceIndex, 1);
-    }
+    const devices = this.fetchDevices().filter(currDevice => currDevice.uuid !== device.uuid);
 
     this.saveDevices(devices);
   }
 
-  fetchDevices(): IDevice[] {
-    let devicesList = JSON.parse(localStorage.getItem(this.storageId)!);
-    if (!devicesList || devicesList === 'undefined') {
-      devicesList = [];
-    }
+  fetchDevices(): Devices {
+    const localDevicesList: IDevices | "undefined" = JSON.parse(localStorage.getItem(this.storageId)!);
+    if (!localDevicesList || localDevicesList === 'undefined') return [];
 
-    return devicesList;
+    return this.convertInterfacesToClassesDevice(localDevicesList);
   }
 
-  saveDevices(devices: IDevice[]) {
+  private convertInterfacesToClassesDevice (interfaceDevices: IDevices): Devices {
+    return interfaceDevices.map(currDevice =>  new Device(currDevice));
+  }
+
+  private saveDevices(devices: IDevice[]) {
     localStorage.setItem(this.storageId, JSON.stringify(devices));
   }
 }
