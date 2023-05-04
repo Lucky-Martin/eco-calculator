@@ -10,3 +10,8 @@ mat-sidenav-container mat-sidenav {
   max-width: 316px;
   height: 100%;
 }
+
+img{
+  width: 48px;
+  margin-right: 20px;
+}
