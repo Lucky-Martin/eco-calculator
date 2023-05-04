@@ -10,21 +10,21 @@ export class CalculatorService {
   constructor() { }
 
   static calculateElectricityConsummationPerMonth(newDevice: INewDevice) {
-    return newDevice.workingHours * newDevice.power;
+    return Number((newDevice.workingHours * newDevice.power).toFixed(3));
   }
 
   static calculateElectricityDeviceCostForMonth(newDevice: INewDevice) {
     const monthlyEnergyConsumption = newDevice.workingHours * newDevice.power;
-    return monthlyEnergyConsumption * this.costPerKilowattHour();
+    return Number((monthlyEnergyConsumption * this.costPerKilowattHour()).toFixed(3));
   }
 
   static calculateElectricityDeviceConsumptionForLifetime(newDevice: INewDevice) {
-    return newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
+    return Number((newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths).toFixed(3));
   }
 
   static calculateElectricityDeviceCostForLifetime(newDevice: INewDevice) {
     const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
-    return lifetimeEnergyConsumption * this.costPerKilowattHour();
+    return Number((lifetimeEnergyConsumption * this.costPerKilowattHour()).toFixed(3));
   }
 
   /**
@@ -32,7 +32,7 @@ export class CalculatorService {
    * */
   static calculateCarbonFootprint(newDevice: INewDevice) {
     const lifetimeEnergyConsumption = newDevice.power * newDevice.workingHours * newDevice.warrantyInMonths;
-    return (lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000;
+    return Number(((lifetimeEnergyConsumption * StatisticData.GramsOfCarbonEmissionsPerkWh2021) / 1000).toFixed(3));
   }
 
   static calculateEnergyEfficiency(newDevice: INewDevice) {
@@ -40,6 +40,6 @@ export class CalculatorService {
   }
 
   private static costPerKilowattHour(): number {
-    return parseFloat(((CostPerKilowattHour.ElectroholdDay + CostPerKilowattHour.EVNBulgariaDay + CostPerKilowattHour.EnergoProDay) / 3).toFixed(5))
+    return Number(((CostPerKilowattHour.ElectroholdDay + CostPerKilowattHour.EVNBulgariaDay + CostPerKilowattHour.EnergoProDay) / 3).toFixed(5));
   }
 }
