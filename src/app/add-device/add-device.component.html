@@ -8,11 +8,11 @@
     <mat-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="deviceData">
         <ng-template matStepLabel>Характеристика на устройството</ng-template>
-        <app-device-data [(deviceData)]="deviceData" (deviceDataChange)="calculateFootprint()"></app-device-data>
+        <app-device-data [deviceData]="deviceData"></app-device-data>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Работа</ng-template>
-        <app-device-usage [(hoursUsed)]="deviceUsage" (hoursUsedChange)="calculateFootprint()"></app-device-usage>
+        <app-device-usage [(hoursUsed)]="deviceUsage" (calculateEfficiency)="calculateFootprint()"></app-device-usage>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Резултат</ng-template>

@@ -1,11 +1,11 @@
-<form [formGroup]="deviceData" (change)="ngOnChanges()">
+<form [formGroup]="deviceData">
   <mat-form-field appearance="fill">
     <mat-label>Име на устройство</mat-label>
     <input matInput formControlName="name" type="text">
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Вид устройство</mat-label>
-    <mat-select formControlName="deviceType" (change)="ngOnChanges()">
+    <mat-select formControlName="deviceType">
       <mat-option [value]="'refrigerator'">Хладилник</mat-option>
       <mat-option [value]="'stove'">Печка</mat-option>
       <mat-option [value]="'air conditioner'">Климатик</mat-option>
@@ -20,11 +20,11 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Мощност (кВч)</mat-label>
-    <input matInput formControlName="power" type="number" id="power" (change)="ngOnChanges()">
+    <input matInput formControlName="power" type="number" id="power">
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Енергийски класове</mat-label>
-    <mat-select formControlName="energyClass" (change)="ngOnChanges()">
+    <mat-select formControlName="energyClass">
       <mat-option [value]="'APP'">A++</mat-option>
       <mat-option [value]="'AP'">A+</mat-option>
       <mat-option [value]="'A'">A</mat-option>
@@ -38,7 +38,7 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Гаранция (месеци)</mat-label>
-    <input matInput formControlName="warranty" type="number" (change)="ngOnChanges()">
+    <input matInput formControlName="warranty" type="number">
   </mat-form-field>
   <button mat-stroked-button matStepperNext>Продължи</button>
 </form>
