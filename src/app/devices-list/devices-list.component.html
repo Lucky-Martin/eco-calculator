@@ -6,7 +6,7 @@
     <h4 *ngIf="devices.length === 0">Няма намерени уреди...</h4>
     <mat-list>
       <mat-list-item *ngFor="let device of devices">
-        <mat-icon mat-list-icon>computer</mat-icon>
+        <mat-icon mat-list-icon color="primary">flash_auto</mat-icon>
         <h4 mat-line>{{device.name}}</h4>
         <p mat-line>{{getDeviceTypeInLocalLanguage(device.typeOfDevice)}}</p>
         <button mat-icon-button aria-label="Info" (click)="onPreviewDeviceInfo(device)">

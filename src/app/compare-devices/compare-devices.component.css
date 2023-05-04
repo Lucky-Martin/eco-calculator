@@ -24,6 +24,12 @@ mat-card-content {
   width: calc(100%/2);
   height: 100%;
 }
+.grid-container .grid-col.padding-left {
+  padding-left: 15px;
+}
+.grid-container .grid-col.padding-right {
+  padding-right: 15px;
+}
 .grid-container .grid-col:nth-child(1) {
   border-right: 1px solid gray;
 }

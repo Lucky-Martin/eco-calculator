@@ -4,11 +4,14 @@
   </mat-card-header>
   <mat-card-content>
     <div class="grid-container">
-      <div class="grid-col">
-        <app-device-info></app-device-info>
-        <app-select-device [devices]="devices" (deviceSelect)="onSelectFirstDevice($event)"></app-select-device>
+      <div class="grid-col padding-right">
+        <app-device-info [device]="firstDevice"></app-device-info>
+        <app-select-device [devices]="devices" (deviceSelect)="onSelectDevice($event, 1)"></app-select-device>
       </div>
-      <div class="grid-col"></div>
+      <div class="grid-col padding-left">
+        <app-device-info [device]="secondDevice"></app-device-info>
+        <app-select-device [devices]="devices" (deviceSelect)="onSelectDevice($event, 2)"></app-select-device>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

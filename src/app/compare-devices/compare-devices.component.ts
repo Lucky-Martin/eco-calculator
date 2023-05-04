@@ -19,11 +19,11 @@ export class CompareDevicesComponent implements OnInit {
     this.devices = this.deviceService.fetchDevices();
   }
 
-  onSelectFirstDevice(uuid: string){
-    this.firstDevice = this.deviceService.getDevice(uuid)!;
-  }
-
-  onSelectSecondDevice(uuid: string){
-    this.secondDevice = this.deviceService.getDevice(uuid)!;
+  onSelectDevice(uuid: string, deviceCount: number) {
+    if (deviceCount === 1) {
+      this.firstDevice = this.deviceService.getDevice(uuid)!;
+    } else if (deviceCount === 2) {
+      this.secondDevice = this.deviceService.getDevice(uuid)!;
+    }
   }
 }

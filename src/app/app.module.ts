@@ -30,6 +30,7 @@ import { DeviceFootprintPreviewComponent } from './devices-list/dialogs/device-f
 import {MatDialogModule} from "@angular/material/dialog";
 import { DeviceInfoComponent } from './compare-devices/device-info/device-info.component';
 import { SelectDeviceComponent } from './compare-devices/select-device/select-device.component';
+import {MatTreeModule} from "@angular/material/tree";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SelectDeviceComponent } from './compare-devices/select-device/select-de
     FormsModule,
     MatTableModule,
     MatDialogModule,
+    MatTreeModule,
 
   ],
   providers: [],
