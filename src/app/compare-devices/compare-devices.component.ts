@@ -35,7 +35,7 @@ export class CompareDevicesComponent implements OnInit {
 
       if (!this.secondDevice) {
         this.devices = this.devices.filter(device => {
-          return device.typeOfDevice === this.firstDevice!.typeOfDevice
+          return device.typeOfDevice === this.firstDevice!.typeOfDevice && device.uuid !== this.firstDevice?.uuid
         });
       }
     } else if (deviceCount === 2) {
@@ -43,7 +43,7 @@ export class CompareDevicesComponent implements OnInit {
 
       if (!this.firstDevice) {
         this.devices = this.devices.filter(device => {
-          return device.typeOfDevice === this.secondDevice!.typeOfDevice;
+          return device.typeOfDevice === this.secondDevice!.typeOfDevice && device.uuid !== this.secondDevice?.uuid;
         });
       }
     }
