@@ -82,7 +82,7 @@ export class Device implements IDevice {
 
 
   constructor(newDevice: INewDevice | IDevice) {
-    if ("uuid" in newDevice) this.uuid = newDevice.uuid;
+    if ("uuid" in newDevice && newDevice.uuid) this.uuid = newDevice.uuid
     else this.uuid = generateUID();
 
     this.name = newDevice.name;
