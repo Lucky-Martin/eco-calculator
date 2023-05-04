@@ -1,5 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Device, Devices, IDevice, IDevices, INewDevice} from "../models/device.model";
+import {
+  ComparedDevicesResult,
+  Device,
+  DeviceProps,
+  Devices, EnergyClass,
+  IDevice,
+  IDevices,
+  INewDevice
+} from "../models/device.model";
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +15,11 @@ import {Device, Devices, IDevice, IDevices, INewDevice} from "../models/device.m
 export class DeviceService {
   //Custom implementation with firebase planned!!! (using localstorage for easier data state management)
   private storageId: string = 'devices';
-  constructor() { }
 
-  getDevice(uuid: string){
+  constructor() {
+  }
+
+  getDevice(uuid: string) {
     const devices = this.fetchDevices();
     return devices.find(value => value.uuid === uuid);
   }
@@ -42,8 +52,59 @@ export class DeviceService {
     return this.convertInterfacesToClassesDevice(localDevicesList);
   }
 
-  private convertInterfacesToClassesDevice (interfaceDevices: IDevices): Devices {
-    return interfaceDevices.map(currDevice =>  new Device(currDevice));
+  compareDevice(firstDevice: IDevice, secondDevice: IDevice) {
+    if (!firstDevice || !secondDevice) return;
+    else if (firstDevice.typeOfDevice !== secondDevice.typeOfDevice) return;
+
+    const betterInFirstDevice: DeviceProps = [];
+    const betterInSecondDevice: DeviceProps = [];
+
+
+    for (const [firstKey, firstValue] of Object.entries(firstDevice)) {
+      for (const [secondKey, secondValue] of Object.entries(secondDevice)) {
+        if (firstKey === secondKey && firstKey !== "uuid" && firstKey !== "name") {
+          if (firstKey === "power" || firstKey === "workingHours") {
+            if (firstValue < secondValue) betterInFirstDevice.push(firstKey)
+            else if (firstValue > secondValue) betterInSecondDevice.push(firstKey)
+          } else if (firstKey === "warrantyInMonths") {
+            if (firstValue > secondValue) betterInFirstDevice.push("warrantyInMonths");
+            else if (firstValue < secondValue) betterInSecondDevice.push("warrantyInMonths");
+          } else if (firstKey === "energyClass"){
+            if(EnergyClass[firstValue] < EnergyClass[secondValue]) betterInFirstDevice.push("energyClass")
+            else if (EnergyClass[firstValue] > EnergyClass[secondValue]) betterInSecondDevice.push("energyClass")
+          } else if (firstKey === "carbonFootprint") {
+            if (firstValue.electricityConsummationPerMonth < secondValue.electricityConsummationPerMonth) betterInFirstDevice.push("carbonFootprint.electricityConsummationPerMonth");
+            else if (firstValue.electricityConsummationPerMonth > secondValue.electricityConsummationPerMonth) betterInSecondDevice.push("carbonFootprint.electricityConsummationPerMonth");
+
+            if (firstValue.electricityDeviceCostForMonth < secondValue.electricityDeviceCostForMonth) betterInFirstDevice.push("carbonFootprint.electricityDeviceCostForMonth");
+            else if (firstValue.electricityDeviceCostForMonth > secondValue.electricityDeviceCostForMonth) betterInSecondDevice.push("carbonFootprint.electricityDeviceCostForMonth");
+
+            if (firstValue.electricityDeviceConsumptionForLifetime < secondValue.electricityDeviceConsumptionForLifetime) betterInFirstDevice.push("carbonFootprint.electricityDeviceConsumptionForLifetime");
+            else if (firstValue.electricityDeviceConsumptionForLifetime > secondValue.electricityDeviceConsumptionForLifetime) betterInSecondDevice.push("carbonFootprint.electricityDeviceConsumptionForLifetime");
+
+            if (firstValue.electricityDeviceCostForLifetime < secondValue.electricityDeviceCostForLifetime) betterInFirstDevice.push("carbonFootprint.electricityDeviceCostForLifetime");
+            else if (firstValue.electricityDeviceCostForLifetime > secondValue.electricityDeviceCostForLifetime) betterInSecondDevice.push("carbonFootprint.electricityDeviceCostForLifetime");
+
+            if (firstValue.carbonFootprint < secondValue.carbonFootprint) betterInFirstDevice.push("carbonFootprint.carbonFootprint");
+            else if (firstValue.carbonFootprint > secondValue.carbonFootprint) betterInSecondDevice.push("carbonFootprint.carbonFootprint");
+
+            if(EnergyClass[firstValue.energyEfficiency] < EnergyClass[secondValue.energyEfficiency]) betterInFirstDevice.push("carbonFootprint.energyEfficiency")
+            else if (EnergyClass[firstValue.energyEfficiency] > EnergyClass[secondValue.energyEfficiency]) betterInSecondDevice.push("carbonFootprint.energyEfficiency")
+
+          }
+        }
+      }
+    }
+
+    const compareResult: ComparedDevicesResult = {
+      betterInFirstDevice,
+      betterInSecondDevice
+    };
+    return compareResult;
+  }
+
+  private convertInterfacesToClassesDevice(interfaceDevices: IDevices): Devices {
+    return interfaceDevices.map(currDevice => new Device(currDevice));
   }
 
   private saveDevices(devices: IDevice[]) {

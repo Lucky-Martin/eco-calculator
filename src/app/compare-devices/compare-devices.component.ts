@@ -40,6 +40,8 @@ export class CompareDevicesComponent implements OnInit {
         });
       }
     }
+
+    console.log(this.deviceService.compareDevice(this.firstDevice, this.secondDevice));
   }
 
   clearDevices() {
