@@ -35,7 +35,10 @@ export class DeviceService {
     const devices = this.fetchDevices();
     const deviceIndex = devices.findIndex(deviceFromList => deviceFromList.uuid === device.uuid);
 
-    devices[deviceIndex].UpdateDevice(device);
+    const deviceInstance = new Device(devices[deviceIndex]);
+    console.log(deviceInstance)
+    deviceInstance.UpdateDevice(device);
+    devices[deviceIndex] = deviceInstance;
     this.saveDevices(devices);
   }
 

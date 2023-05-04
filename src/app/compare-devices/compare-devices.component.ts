@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DeviceService} from "../services/device.service";
-import {IDevice} from '../models/device.model';
+import { IDevice, IDevices } from '../models/device.model';
 
 @Component({
   selector: 'app-compare-devices',
@@ -12,12 +12,14 @@ export class CompareDevicesComponent implements OnInit {
   firstDevice!: IDevice | null;
   secondDevice!: IDevice | null;
   reset = false;
+  private allDevices!: IDevice[];
 
   constructor(private deviceService: DeviceService) {
   }
 
   ngOnInit(): void {
     this.devices = this.deviceService.fetchDevices();
+    this.allDevices = this.devices;
   }
 
   onSelectDevice(uuid: string, deviceCount: number) {
@@ -27,7 +29,6 @@ export class CompareDevicesComponent implements OnInit {
       if (!this.secondDevice) {
         this.devices = this.devices.filter(device => {
           return device.typeOfDevice === this.firstDevice!.typeOfDevice
-              && device.uuid !== this.firstDevice!.uuid;
         });
       }
     } else if (deviceCount === 2) {
@@ -35,13 +36,12 @@ export class CompareDevicesComponent implements OnInit {
 
       if (!this.firstDevice) {
         this.devices = this.devices.filter(device => {
-          return device.typeOfDevice === this.secondDevice!.typeOfDevice
-              && device.uuid !== this.secondDevice!.uuid;
+          return device.typeOfDevice === this.secondDevice!.typeOfDevice;
         });
       }
     }
 
-    console.log(this.deviceService.compareDevice(this.firstDevice, this.secondDevice));
+    console.log(this.deviceService.compareDevice(this.firstDevice!, this.secondDevice!));
   }
 
   clearDevices() {
