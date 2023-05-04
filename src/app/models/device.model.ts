@@ -1,14 +1,46 @@
 import {generateUID} from "../functions/generateUID";
 import {CalculatorService} from "../services/calculator.service";
 
-export type TEnergyClass = "APP"| "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
-export type TDeviceType = "refrigerator" | "stove" | "air conditioner" | "microwave" | "washing machine" | "dryer" | "dishwasher" | "computer" | "printer" | "boiler";
+export type TEnergyClass = "APP" | "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
+export type TDeviceType =
+  "refrigerator"
+  | "stove"
+  | "air conditioner"
+  | "microwave"
+  | "washing machine"
+  | "dryer"
+  | "dishwasher"
+  | "computer"
+  | "printer"
+  | "boiler";
 
-export type DeviceProp = "power" | "energyClass" | "warrantyInMonths" | "workingHours" | "carbonFootprint.electricityConsummationPerMonth" | "carbonFootprint.electricityDeviceCostForMonth" | "carbonFootprint.electricityDeviceConsumptionForLifetime" | "carbonFootprint.electricityDeviceCostForLifetime" | "carbonFootprint.carbonFootprint" | "carbonFootprint.energyEfficiency";
+export type DeviceProp =
+  "power"
+  | "energyClass"
+  | "warrantyInMonths"
+  | "workingHours"
+  | "carbonFootprint.electricityConsummationPerMonth"
+  | "carbonFootprint.electricityDeviceCostForMonth"
+  | "carbonFootprint.electricityDeviceConsumptionForLifetime"
+  | "carbonFootprint.electricityDeviceCostForLifetime"
+  | "carbonFootprint.carbonFootprint"
+  | "carbonFootprint.energyEfficiency";
 export type DeviceProps = DeviceProp[];
 
 export type IDevices = IDevice[];
 export type Devices = Device[];
+
+export enum EnergyClass {
+  APP,
+  AP,
+  A,
+  B,
+  C,
+  D,
+  E,
+  F,
+  G
+}
 
 export interface IDevice {
   readonly uuid: string;
@@ -49,9 +81,8 @@ export class Device implements IDevice {
   carbonFootprint: IDeviceFootprintData;
 
 
-
   constructor(newDevice: INewDevice | IDevice) {
-    if("uuid" in newDevice) this.uuid = newDevice.uuid;
+    if ("uuid" in newDevice) this.uuid = newDevice.uuid;
     else this.uuid = generateUID();
 
     this.name = newDevice.name;
@@ -63,7 +94,7 @@ export class Device implements IDevice {
     this.carbonFootprint = this.CalculateData(newDevice);
   }
 
-  UpdateDevice(updatedDevice: IDevice){
+  UpdateDevice(updatedDevice: IDevice) {
     this.name = updatedDevice.name;
     this.typeOfDevice = updatedDevice.typeOfDevice;
     this.power = updatedDevice.power;
