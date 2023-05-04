@@ -6,7 +6,26 @@
 
   <ng-container matColumnDef="value">
     <th mat-header-cell *matHeaderCellDef>Стойност</th>
-    <td mat-cell *matCellDef="let element">{{element.value}}</td>
+    <td mat-cell *matCellDef="let element">
+      <div style="display: flex; flex-direction: row; gap: 4px;">
+        <div style="margin-bottom: auto; margin-top: auto;">
+          <span> {{element.value}} </span>
+        </div>
+
+        <div [ngSwitch]="element.value">
+          <div *ngSwitchCase="'APP'"> <div class="square rounded appColor"></div> </div>
+          <div *ngSwitchCase="'AP'"> <div class="square rounded apColor"></div> </div>
+          <div *ngSwitchCase="'A'"> <div class="square rounded aColor"></div> </div>
+          <div *ngSwitchCase="'B'"> <div class="square rounded bColor"></div> </div>
+          <div *ngSwitchCase="'C'"> <div class="square rounded cColor"></div> </div>
+          <div *ngSwitchCase="'D'"> <div class="square rounded dColor"></div> </div>
+          <div *ngSwitchCase="'E'"> <div class="square rounded eColor"></div> </div>
+          <div *ngSwitchCase="'F'"> <div class="square rounded fColor"></div> </div>
+          <div *ngSwitchCase="'G'"> <div class="square rounded gColor"></div> </div>
+        </div>
+      </div>
+
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
