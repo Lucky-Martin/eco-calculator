@@ -4,6 +4,9 @@ import {CalculatorService} from "../services/calculator.service";
 export type TEnergyClass = "APP"| "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
 export type TDeviceType = "refrigerator" | "stove" | "air conditioner" | "microwave" | "washing machine" | "dryer" | "dishwasher" | "computer" | "printer" | "boiler";
 
+export type DeviceProp = "power" | "energyClass" | "warrantyInMonths" | "workingHours" | "carbonFootprint.electricityConsummationPerMonth" | "carbonFootprint.electricityDeviceCostForMonth" | "carbonFootprint.electricityDeviceConsumptionForLifetime" | "carbonFootprint.electricityDeviceCostForLifetime" | "carbonFootprint.carbonFootprint" | "carbonFootprint.energyEfficiency";
+export type DeviceProps = DeviceProp[];
+
 export type IDevices = IDevice[];
 export type Devices = Device[];
 
@@ -28,6 +31,11 @@ export interface IDeviceFootprintData {
 }
 
 export type INewDevice = Omit<IDevice, "carbonFootprint" | "uuid">
+
+export interface ComparedDevicesResult {
+  betterInFirstDevice: DeviceProps,
+  betterInSecondDevice: DeviceProps
+}
 
 export class Device implements IDevice {
   readonly uuid: string;
