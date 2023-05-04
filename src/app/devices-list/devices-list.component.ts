@@ -40,5 +40,10 @@ export class DevicesListComponent implements OnInit {
     sessionStorage.setItem('add-device', JSON.stringify(device));
   }
 
+  async onCompare(device: IDevice) {
+    await this.router.navigateByUrl('compare');
+    sessionStorage.setItem('compare-device', JSON.stringify(device));
+  }
+
   protected readonly getDeviceTypeInLocalLanguage = getDeviceTypeInLocalLanguage;
 }

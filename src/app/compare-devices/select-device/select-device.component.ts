@@ -8,6 +8,7 @@ import {IDevice} from "../../models/device.model";
 })
 export class SelectDeviceComponent {
   @Input('devices') devices!: IDevice[];
+  @Input('device') device!: IDevice;
   @Output('deviceSelect') deviceSelect: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }

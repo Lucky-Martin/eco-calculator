@@ -10,10 +10,12 @@ export class AppComponent {
   showNav = true;
 
   constructor(private router: Router) {
+    //session storage garbage collector (will be removed with firebase implementation)
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (!this.router.url.includes('add')) {
           sessionStorage.removeItem('add-device');
+          sessionStorage.removeItem('compare-device');
         }
       }
     })

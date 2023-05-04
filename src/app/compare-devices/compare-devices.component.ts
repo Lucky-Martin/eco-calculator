@@ -22,6 +22,11 @@ export class CompareDevicesComponent implements OnInit {
   ngOnInit(): void {
     this.devices = this.deviceService.fetchDevices();
     this.allDevices = this.devices;
+
+    const device = JSON.parse(sessionStorage.getItem('compare-device')!);
+    if (device) {
+      this.firstDevice = device;
+    }
   }
 
   onSelectDevice(uuid: string, deviceCount: number) {

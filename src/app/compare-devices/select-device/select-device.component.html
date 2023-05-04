@@ -2,7 +2,7 @@
   <div class="grid-container">
     <mat-form-field appearance="fill">
       <mat-label>Избери електроуред</mat-label>
-      <mat-select (valueChange)="onSelectDevice($event)">
+      <mat-select [value]="device?.uuid" (valueChange)="onSelectDevice($event)">
         <mat-option *ngFor="let device of devices" [value]="device.uuid">
           {{device.name}}
         </mat-option>
