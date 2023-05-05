@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'compare',
     component: CompareDevicesComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'list'
   }
 ];
 

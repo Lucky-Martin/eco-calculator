@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Сравни устройства</mat-card-title>
-    <button mat-stroked-button (click)="clearDevices()">Изчисти</button>
+    <button mat-stroked-button (click)="clearDevices()" [disabled]="!(firstDevice && secondDevice)">Изчисти</button>
   </mat-card-header>
   <mat-card-content *ngIf="!reset">
     <div class="grid-container">
