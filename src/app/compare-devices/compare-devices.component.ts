@@ -24,24 +24,22 @@ export class CompareDevicesComponent implements OnInit {
     this.devicesToChoose = this.allDevices;
 
     const device = JSON.parse(sessionStorage.getItem('compare-device')!);
-    if (device) {
-      this.firstDevice = device;
-    }
+    if (device) this.firstDevice = device;
+
+    if (this.firstDevice)
+      this.filterDevices(this.firstDevice)
+
   }
 
   onSelectDevice(uuid: string, deviceCount: number) {
     if (deviceCount === 1) {
       this.firstDevice = this.deviceService.getDevice(uuid)!;
 
-      if (!this.secondDevice)
-        this.devicesToChoose = this.allDevices.filter(device => device.typeOfDevice === this.firstDevice!.typeOfDevice);
-
+      this.filterDevices(this.firstDevice);
     } else if (deviceCount === 2) {
       this.secondDevice = this.deviceService.getDevice(uuid)!;
 
-      if (!this.firstDevice)
-        this.devicesToChoose = this.allDevices.filter(device => device.typeOfDevice === this.secondDevice!.typeOfDevice);
-
+      this.filterDevices(this.secondDevice);
     }
 
     const diff = this.deviceService.compareDevice(this.firstDevice!, this.secondDevice!);
@@ -49,6 +47,10 @@ export class CompareDevicesComponent implements OnInit {
       this.firstDeviceHighlight = diff.betterInFirstDevice;
       this.secondDeviceHighlight = diff.betterInSecondDevice;
     }
+  }
+
+  private filterDevices(selectedDevice: IDevice){
+    this.devicesToChoose = this.allDevices.filter(device => device.typeOfDevice === selectedDevice!.typeOfDevice);
   }
 
   clearDevices() {
