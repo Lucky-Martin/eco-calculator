@@ -9,14 +9,14 @@
         <app-device-info [device]="firstDevice!"
                          [highlightFields]="firstDeviceHighlight!"></app-device-info>
         <app-select-device [device]="firstDevice!"
-                           [devices]="devices"
+                           [devices]="devicesToChoose"
                            (deviceSelect)="onSelectDevice($event, 1)"></app-select-device>
       </div>
       <div class="grid-col padding-left">
         <app-device-info [device]="secondDevice!"
                          [highlightFields]="secondDeviceHighlight!"></app-device-info>
         <app-select-device [device]="secondDevice!"
-                           [devices]="devices"
+                           [devices]="devicesToChoose"
                            (deviceSelect)="onSelectDevice($event, 2)"></app-select-device>
       </div>
     </div>

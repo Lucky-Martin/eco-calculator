@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {IDevice} from "../../models/device.model";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {IDevice, IDevices} from "../../models/device.model";
 
 @Component({
   selector: 'app-select-device',
@@ -7,9 +7,9 @@ import {IDevice} from "../../models/device.model";
   styleUrls: ['./select-device.component.css']
 })
 export class SelectDeviceComponent {
-  @Input('devices') devices!: IDevice[];
+  @Input('devices') devicesToChoose!: IDevices;
   @Input('device') device!: IDevice;
-  @Output('deviceSelect') deviceSelect: EventEmitter<string> = new EventEmitter<string>();
+  @Output('deviceSelect') deviceSelect = new EventEmitter<string>();
 
   constructor() { }
 

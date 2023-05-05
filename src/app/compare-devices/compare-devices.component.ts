@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DeviceService} from "../services/device.service";
-import { IDevice, IDevices } from '../models/device.model';
+import {IDevice, IDevices} from '../models/device.model';
 
 @Component({
   selector: 'app-compare-devices',
@@ -8,20 +8,20 @@ import { IDevice, IDevices } from '../models/device.model';
   styleUrls: ['./compare-devices.component.css']
 })
 export class CompareDevicesComponent implements OnInit {
-  devices!: IDevice[];
+  devicesToChoose!: IDevice[];
   firstDevice!: IDevice | null;
   secondDevice!: IDevice | null;
   firstDeviceHighlight!: string[] | null;
   secondDeviceHighlight!: string[] | null;
   reset = false;
-  private allDevices!: IDevice[];
+  private readonly allDevices: IDevices;
 
   constructor(private deviceService: DeviceService) {
+    this.allDevices = deviceService.fetchDevices();
   }
 
   ngOnInit(): void {
-    this.devices = this.deviceService.fetchDevices();
-    this.allDevices = this.devices;
+    this.devicesToChoose = this.allDevices;
 
     const device = JSON.parse(sessionStorage.getItem('compare-device')!);
     if (device) {
@@ -33,19 +33,15 @@ export class CompareDevicesComponent implements OnInit {
     if (deviceCount === 1) {
       this.firstDevice = this.deviceService.getDevice(uuid)!;
 
-      if (!this.secondDevice) {
-        this.devices = this.devices.filter(device => {
-          return device.typeOfDevice === this.firstDevice!.typeOfDevice && device.uuid !== this.firstDevice?.uuid
-        });
-      }
+      if (!this.secondDevice)
+        this.devicesToChoose = this.allDevices.filter(device => device.typeOfDevice === this.firstDevice!.typeOfDevice);
+
     } else if (deviceCount === 2) {
       this.secondDevice = this.deviceService.getDevice(uuid)!;
 
-      if (!this.firstDevice) {
-        this.devices = this.devices.filter(device => {
-          return device.typeOfDevice === this.secondDevice!.typeOfDevice && device.uuid !== this.secondDevice?.uuid;
-        });
-      }
+      if (!this.firstDevice)
+        this.devicesToChoose = this.allDevices.filter(device => device.typeOfDevice === this.secondDevice!.typeOfDevice);
+
     }
 
     const diff = this.deviceService.compareDevice(this.firstDevice!, this.secondDevice!);
@@ -61,7 +57,7 @@ export class CompareDevicesComponent implements OnInit {
     this.secondDevice = null;
     this.secondDeviceHighlight = null;
     this.reset = true;
-    this.devices = this.deviceService.fetchDevices();
+    this.devicesToChoose = this.allDevices;
 
     setTimeout(() => {
       this.reset = false;
