@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import {IDeviceFootprintData} from "../../../models/device.model";
+import {EnergyClass, IDeviceFootprintData} from "../../../models/device.model";
 
 @Component({
   selector: 'app-device-score',
@@ -32,4 +32,6 @@ export class DeviceScoreComponent implements OnInit, OnChanges {
       ]
     }
   }
+
+  protected readonly EnergyClass = EnergyClass;
 }

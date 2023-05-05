@@ -31,6 +31,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { DeviceInfoComponent } from './compare-devices/device-info/device-info.component';
 import { SelectDeviceComponent } from './compare-devices/select-device/select-device.component';
 import {MatTreeModule} from "@angular/material/tree";
+import { EnergyClassColorComponent } from './components/shared/energy-class-color/energy-class-color.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatTreeModule} from "@angular/material/tree";
     DeviceScoreComponent,
     DeviceFootprintPreviewComponent,
     DeviceInfoComponent,
-    SelectDeviceComponent
+    SelectDeviceComponent,
+    EnergyClassColorComponent
   ],
   imports: [
     BrowserModule,

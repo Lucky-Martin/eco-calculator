@@ -1,0 +1,44 @@
+.square{
+  width: 25px;
+  height: 25px;
+}
+
+.rounded{
+  border-radius: 100%;
+}
+
+.appColor{
+  background-color: #33A357;
+}
+
+.apColor{
+  background-color: #79B752;
+}
+
+.aColor{
+  background-color: #C3D545;
+}
+
+.bColor{
+  background-color: #FFF12C;
+}
+
+.cColor{
+  background-color: #F8F9FA;
+}
+
+.dColor{
+  background-color: #D66F2C;
+}
+
+.eColor{
+  background-color: #CC232A;
+}
+
+.fColor{
+  background-color: #CC232A;
+}
+
+.gColor{
+  background-color: #CC232A;
+}
