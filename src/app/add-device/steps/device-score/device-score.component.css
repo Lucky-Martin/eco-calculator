@@ -10,3 +10,6 @@ table th,
 table td.criteria {
   font-weight: bold;
 }
+button mat-icon {
+  margin-top: -3px;
+}

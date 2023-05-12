@@ -6,3 +6,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-center {
   text-align: center;
 }
+.mat-step-header .mat-step-icon-selected {
+  background-color: #E56A27;
+}

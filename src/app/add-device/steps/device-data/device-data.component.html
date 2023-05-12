@@ -1,6 +1,6 @@
 <form [formGroup]="deviceData">
   <mat-form-field appearance="fill">
-    <mat-label>Име на устройство</mat-label>
+    <mat-label>Прякор на уреда (пример: Климатик в хола)</mat-label>
     <input matInput formControlName="name" type="text">
   </mat-form-field>
   <mat-form-field appearance="fill">
@@ -40,5 +40,8 @@
     <mat-label>Гаранция (месеци)</mat-label>
     <input matInput formControlName="warranty" type="number">
   </mat-form-field>
-  <button mat-stroked-button matStepperNext>Продължи</button>
+  <button mat-raised-button matStepperNext color="warn">
+    Продължи
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+  </button>
 </form>

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import {EnergyClass, IDeviceFootprintData} from "../../../models/device.model";
+import {IDeviceFootprintData} from "../../../models/device.model";
 
 @Component({
   selector: 'app-device-score',
@@ -23,15 +23,13 @@ export class DeviceScoreComponent implements OnInit, OnChanges {
   private calculateDataSource() {
     if (this.footprint) {
       this.dataSource = [
-        {criteria: 'Консумация на електроенергия за периода', value: `${this.footprint.electricityConsummationPerMonth} кВч`},
-        {criteria: 'Разход за ел. енергия на периода', value: `${this.footprint.electricityDeviceCostForMonth} лв`},
+        {criteria: 'Консумация на електроенергия за месец', value: `${this.footprint.electricityConsummationPerMonth} кВч`},
+        {criteria: 'Разход за ел. енергия на месец', value: `${this.footprint.electricityDeviceCostForMonth} лв`},
         {criteria: 'Разход на ел. енергия за целия живот на стоката', value: `${this.footprint.electricityDeviceConsumptionForLifetime} кВч`},
         {criteria: 'Разход за ел. енергия за целия живот на стоката ', value: `${this.footprint.electricityDeviceCostForLifetime} лв`},
-        {criteria: 'Въглероден отпечатък на ползване', value: `${this.footprint.carbonFootprint} C02/кВч`},
+        {criteria: 'Въглероден отпечатък на ползване', value: `${Math.round(this.footprint.carbonFootprint)} C02/кВч`},
         {criteria: 'Енергийна ефективност', value: this.footprint.energyEfficiency}
       ]
     }
   }
-
-  protected readonly EnergyClass = EnergyClass;
 }
