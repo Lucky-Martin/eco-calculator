@@ -1,0 +1,13 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: orange;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+.star-rating mat-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+}

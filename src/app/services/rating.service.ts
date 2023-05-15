@@ -8,14 +8,14 @@ import {FeedbackComponent} from "../dialogs/feedback/feedback.component";
 })
 export class RatingService {
 
-  rating = new Subject<number>();
+  rating = new Subject<{ rating: number; comment: string }>();
   ratingError = new Subject<Error>();
 
 
   constructor(private matDialog: MatDialog) { }
 
   fetchRating() {
-    const fetchedRating = parseInt(window.localStorage.getItem("rating")!);
+    const fetchedRating = JSON.parse(window.localStorage.getItem("rating")!);
     this.rating.next(fetchedRating);
   }
 
@@ -25,8 +25,9 @@ export class RatingService {
     return emittedValue;
   }
 
-  setRating(newRating: number){
-    if(newRating > 1 && newRating < 5){
+  setRating(rating: {rating: number, comment: string}){
+    if(rating.rating >= 1 && rating.rating <= 5){
+      const newRating = {rating: rating.rating, comment: rating.comment};
       this.saveRating(newRating);
       this.rating.next(newRating);
     }
@@ -40,14 +41,21 @@ export class RatingService {
   }
 
   openFeedbackDialog() {
-    const dialogRef = this.matDialog.open(FeedbackComponent);
+    const dialogRef = this.matDialog.open(FeedbackComponent, {
+      height: '70%',
+      width: '95%',
+      maxWidth: 512,
+      maxHeight: 512
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result) {
+        this.setRating(result);
+      }
     });
   }
 
-  private saveRating(newRating: number){
-    window.localStorage.setItem("rating", newRating.toString())
+  private saveRating(rating: {rating: number; comment: string;}){
+    window.localStorage.setItem("rating", JSON.stringify(rating));
   }
 }

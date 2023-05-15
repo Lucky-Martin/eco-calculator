@@ -7,7 +7,8 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  message!: string;
+  comment!: string;
+  rating: number = 0;
 
   constructor(private dialogRef: MatDialogRef<FeedbackComponent>,) { }
 
@@ -18,6 +19,10 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSend() {
-    this.dialogRef.close(true);
+    this.dialogRef.close({rating: this.rating, comment: this.comment});
+  }
+
+  onRatingChanged(rating: number) {
+    this.rating = rating;
   }
 }

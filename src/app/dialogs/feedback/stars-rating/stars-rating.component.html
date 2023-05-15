@@ -1,0 +1,9 @@
+<div class="star-rating">
+  <mat-icon
+    *ngFor="let star of stars"
+    (mouseenter)="highlightStar(star)"
+    (click)="rate(star)"
+  >
+    {{ star <= currentRating ? 'star' : 'star_border' }}
+  </mat-icon>
+</div>
