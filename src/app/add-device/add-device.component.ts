@@ -25,7 +25,7 @@ export class AddDeviceComponent implements OnInit {
               private deviceService: DeviceService,
               private router: Router) {
     this.deviceData = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: [''],
       deviceType: ['', [Validators.required]],
       power: [null, [Validators.required]],
       energyClass: ['', [Validators.required]],

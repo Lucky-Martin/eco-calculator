@@ -1,5 +1,8 @@
 <mat-form-field appearance="fill">
-  <mat-label>Брой часове работа</mat-label>
+  <mat-label>Брой часове работа за месец</mat-label>
   <input matInput #hours type="number" (change)="onHoursChange(hours.value)" [(ngModel)]="hoursUsed">
 </mat-form-field>
-<button mat-stroked-button matStepperNext (click)="submitForm()">Пресметни</button>
+<button mat-raised-button matStepperNext color="warn" (click)="submitForm()">
+  Продължи
+  <mat-icon aria-hidden="false"fontIcon="chevron_right"></mat-icon>
+</button>

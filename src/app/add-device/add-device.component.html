@@ -1,13 +1,22 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-subtitle>Изчисли своя</mat-card-subtitle>
-    <mat-card-title>Въглероден отпечатък</mat-card-title>
+    <div class="grid">
+      <div class="col-main">
+        <mat-card-subtitle>Изчисли своята</mat-card-subtitle>
+        <mat-card-title>Енергийна ефективност</mat-card-title>
+      </div>
+      <div class="col-second">
+        <button mat-raised-button color="accent">
+          <mat-icon fontIcon="qr_code_scanner"></mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-card-header>
 
   <mat-card-content>
     <mat-stepper [linear]="true" #stepper (selectionChange)="calculateFootprint()">
       <mat-step [stepControl]="deviceData">
-        <ng-template matStepLabel>Характеристика на устройството</ng-template>
+        <ng-template matStepLabel>Характеристика на уреда</ng-template>
         <app-device-data [deviceData]="deviceData"></app-device-data>
       </mat-step>
       <mat-step>
@@ -17,7 +26,7 @@
       <mat-step>
         <ng-template matStepLabel>Резултат</ng-template>
         <app-device-score [carbonFootprint]="deviceFootprint"></app-device-score>
-        <button mat-stroked-button color="basic" (click)="saveDevice()">Запази устройство</button>
+        <button mat-raised-button color="primary" (click)="saveDevice()">Запази електроуред</button>
       </mat-step>
     </mat-stepper>
   </mat-card-content>

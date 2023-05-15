@@ -7,3 +7,24 @@ mat-card {
 button {
   margin-top: 10px;
 }
+.grid {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.grid .col-main {
+  width: 70%;
+}
+.grid .col-second {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+.grid .col-second button {
+  margin: 0;
+  height: 100%;
+  min-width: 64px;
+}

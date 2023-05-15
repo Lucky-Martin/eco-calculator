@@ -2,3 +2,6 @@ mat-form-field {
   margin-top: 20px;
   width: 100%;
 }
+button mat-icon {
+  margin-top: -3px;
+}

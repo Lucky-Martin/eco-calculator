@@ -4,3 +4,6 @@ mat-form-field {
 form {
   margin-top: 20px;
 }
+button mat-icon {
+  margin-top: -3px;
+}
