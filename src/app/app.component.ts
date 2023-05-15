@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
+import { NavigationStart, Router } from "@angular/router";
+import {RatingService} from "./services/rating.service";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import {NavigationStart, Router} from "@angular/router";
 export class AppComponent {
   showNav = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private ratingService: RatingService) {
     //session storage garbage collector (will be removed with firebase implementation)
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -23,5 +25,9 @@ export class AppComponent {
 
   updateNavState(state: boolean) {
     this.showNav = state;
+  }
+
+  onOpenFeedbackDialog() {
+    this.ratingService.openFeedbackDialog();
   }
 }

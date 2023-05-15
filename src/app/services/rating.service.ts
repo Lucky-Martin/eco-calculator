@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {FeedbackComponent} from "../dialogs/feedback/feedback.component";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class RatingService {
   ratingError = new Subject<Error>();
 
 
-  constructor() { }
+  constructor(private matDialog: MatDialog) { }
 
   fetchRating() {
     const fetchedRating = parseInt(window.localStorage.getItem("rating")!);
@@ -35,6 +37,14 @@ export class RatingService {
       }
       this.ratingError.next(currError)
     }
+  }
+
+  openFeedbackDialog() {
+    const dialogRef = this.matDialog.open(FeedbackComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
   private saveRating(newRating: number){

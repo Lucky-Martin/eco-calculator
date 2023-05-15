@@ -1,9 +1,18 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="updateNavState(!showNav)">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <img src="assets/EcoMeter.png" alt="EcoMeter logo"/>
-  <span>EcoMeter</span>
+  <div class="grid-container">
+    <div class="col-second">
+      <button mat-icon-button (click)="updateNavState(!showNav)">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="col-main">
+      <h1>EcoMeter</h1>
+      <img src="assets/EcoMeter.png" alt="EcoMeter logo"/>
+      <button mat-icon-button (click)="onOpenFeedbackDialog()">
+        <mat-icon fontIcon="rate_review"></mat-icon>
+      </button>
+    </div>
+  </div>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav mode="side" [opened]="showNav">
