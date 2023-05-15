@@ -39,6 +39,9 @@ mat-card-content {
 table {
   width: 100%;
 }
+table td, table, th {
+  color: #000;
+}
 table .highlight {
   color: #45B173;
 }
