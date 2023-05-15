@@ -1,7 +1,7 @@
 import {generateUID} from "../functions/generateUID";
 import {CalculatorService} from "../services/calculator.service";
 
-export type TEnergyClass = "APP" | "AP" | "A" | "B" | "C" | "D" | "E" | "F" | "G";
+export type TEnergyClass = "A" | "B" | "C" | "D" | "E" | "F" | "G";
 export type TDeviceType =
   "refrigerator"
   | "stove"
