@@ -7,3 +7,8 @@ form {
 button mat-icon {
   margin-top: -3px;
 }
+
+.bottom-buttons{
+  display: flex;
+  justify-content: space-between;
+}

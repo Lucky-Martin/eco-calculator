@@ -38,8 +38,13 @@
     <mat-label>Гаранция (месеци)</mat-label>
     <input matInput formControlName="warranty" type="number">
   </mat-form-field>
-  <button mat-raised-button matStepperNext color="warn">
-    Продължи
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
-  </button>
+  <div class="bottom-buttons">
+    <button mat-raised-button matStepperNext color="warn">
+      Продължи
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+    </button>
+    <button mat-raised-button color="accent">
+      <mat-icon fontIcon="qr_code_scanner"></mat-icon>
+    </button>
+  </div>
 </form>
