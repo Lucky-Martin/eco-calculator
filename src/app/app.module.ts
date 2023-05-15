@@ -34,6 +34,8 @@ import { EnergyClassColorComponent } from './components/shared/energy-class-colo
 import { FeedbackComponent } from './dialogs/feedback/feedback.component';
 import { StarsRatingComponent } from './dialogs/feedback/stars-rating/stars-rating.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { EnterDeviceNameComponent } from './dialogs/enter-device-name/enter-device-name.component';
 
 @NgModule({
   declarations: [
@@ -49,32 +51,34 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     SelectDeviceComponent,
     EnergyClassColorComponent,
     FeedbackComponent,
-    StarsRatingComponent
+    StarsRatingComponent,
+    EnterDeviceNameComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        MatGridListModule,
-        MatSlideToggleModule,
-        BrowserAnimationsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatCardModule,
-        MatStepperModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatExpansionModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatListModule,
-        FormsModule,
-        MatTableModule,
-        MatDialogModule,
-        MatTreeModule,
-        MatTooltipModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    FormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatTreeModule,
+    MatTooltipModule,
+    MatAutocompleteModule,
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

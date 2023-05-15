@@ -5,6 +5,8 @@ import {CalculatorService} from "../services/calculator.service";
 import {DeviceService} from "../services/device.service";
 import {MatStepper} from "@angular/material/stepper";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {EnterDeviceNameComponent} from "../dialogs/enter-device-name/enter-device-name.component";
 
 @Component({
   selector: 'app-add-device',
@@ -23,7 +25,8 @@ export class AddDeviceComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private calculatorService: CalculatorService,
               private deviceService: DeviceService,
-              private router: Router) {
+              private router: Router,
+              private matDialog: MatDialog) {
     this.deviceData = this.formBuilder.group({
       name: [''],
       deviceType: ['', [Validators.required]],
@@ -50,6 +53,24 @@ export class AddDeviceComponent implements OnInit {
 
   async saveDevice() {
     let {name, power, energyClass, deviceType, warranty} = this.getInputData();
+    if (!name || name === '') {
+      const dialog = this.matDialog.open(EnterDeviceNameComponent, {
+        height: '70%',
+        width: '95%',
+        maxWidth: 512,
+        maxHeight: 512
+      });
+
+      dialog.afterClosed().subscribe(result => {
+        if (result) {
+          this.deviceData.get('name')?.setValue(result);
+          this.saveDevice();
+        }
+      });
+
+      return;
+    }
+
     const device = {
       energyClass, name, power,
       uuid: this.deviceUUID,

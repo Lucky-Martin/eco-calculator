@@ -5,18 +5,15 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Вид устройство</mat-label>
-    <mat-select formControlName="deviceType">
-      <mat-option [value]="'refrigerator'">Хладилник</mat-option>
-      <mat-option [value]="'stove'">Печка</mat-option>
-      <mat-option [value]="'air conditioner'">Климатик</mat-option>
-      <mat-option [value]="'microwave'">Микровълнова</mat-option>
-      <mat-option [value]="'washing machine'">Пералня</mat-option>
-      <mat-option [value]="'dryer'">Сушилня</mat-option>
-      <mat-option [value]="'dishwasher'">Съдомиялна</mat-option>
-      <mat-option [value]="'computer'">Компютър</mat-option>
-      <mat-option [value]="'printer'">Принтер</mat-option>
-      <mat-option [value]="'boiler'">Бойлер</mat-option>
-    </mat-select>
+    <input matInput type="text"
+           placeholder="Pick one"
+           formControlName="deviceType"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Мощност (кВч)</mat-label>

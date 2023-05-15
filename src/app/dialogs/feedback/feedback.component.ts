@@ -10,7 +10,7 @@ export class FeedbackComponent implements OnInit {
   comment!: string;
   rating: number = 0;
 
-  constructor(private dialogRef: MatDialogRef<FeedbackComponent>,) { }
+  constructor(private dialogRef: MatDialogRef<FeedbackComponent>) { }
 
   ngOnInit(): void { }
 

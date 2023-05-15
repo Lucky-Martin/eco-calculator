@@ -1,20 +1,6 @@
-.dialog {
-  height: 100%;
-  position: relative;
-}
 mat-form-field {
   width: 100%;
 }
 mat-form-field textarea {
   min-height: 128px;
-}
-div[mat-dialog-actions] {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

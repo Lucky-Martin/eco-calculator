@@ -1,0 +1,14 @@
+<div class="dialog">
+  <h1 mat-dialog-title>Въведи име на уреда</h1>
+  <div mat-dialog-content>
+    <p>Пример - Климатик в хола</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Въведи име (прякор)....</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClose()">Затвори</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">Добави</button>
+  </div>
+</div>
