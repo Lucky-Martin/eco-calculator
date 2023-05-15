@@ -36,3 +36,9 @@ mat-card-content {
 .grid-container .grid-col:nth-child(1) {
   border-right: 1px solid gray;
 }
+table {
+  width: 100%;
+}
+table .highlight {
+  color: #45B173;
+}

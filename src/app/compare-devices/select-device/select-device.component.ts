@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IDevice, IDevices} from "../../models/device.model";
 
 @Component({
@@ -10,8 +10,6 @@ export class SelectDeviceComponent {
   @Input('devices') devicesToChoose!: IDevices;
   @Input('device') device!: IDevice;
   @Output('deviceSelect') deviceSelect = new EventEmitter<string>();
-
-  constructor() { }
 
   onSelectDevice(uuid: string) {
     this.deviceSelect.emit(uuid);

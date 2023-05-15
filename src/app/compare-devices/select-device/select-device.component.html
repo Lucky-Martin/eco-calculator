@@ -1,12 +1,16 @@
 <div class="select-device">
   <div class="grid-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Избери електроуред</mat-label>
-      <mat-select [value]="device?.uuid" (valueChange)="onSelectDevice($event)">
-        <mat-option *ngFor="let device of devicesToChoose" [value]="device.uuid">
-          {{device.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <mat-list *ngIf="!device">
+      <div class="list-item" *ngFor="let deviceItem of devicesToChoose">
+        <mat-list-item (click)="onSelectDevice(deviceItem.uuid)">
+          <p>{{deviceItem.name}}</p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+    <mat-list-item *ngIf="device">
+      <p>Избрано устройство {{device.name}}</p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
   </div>
 </div>

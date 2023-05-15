@@ -28,7 +28,6 @@ import { DeviceScoreComponent } from './add-device/steps/device-score/device-sco
 import {MatTableModule} from "@angular/material/table";
 import { DeviceFootprintPreviewComponent } from './devices-list/dialogs/device-footprint-preview/device-footprint-preview.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { DeviceInfoComponent } from './compare-devices/device-info/device-info.component';
 import { SelectDeviceComponent } from './compare-devices/select-device/select-device.component';
 import {MatTreeModule} from "@angular/material/tree";
 import { EnergyClassColorComponent } from './components/shared/energy-class-color/energy-class-color.component';
@@ -44,7 +43,6 @@ import { EnergyClassColorComponent } from './components/shared/energy-class-colo
     DeviceUsageComponent,
     DeviceScoreComponent,
     DeviceFootprintPreviewComponent,
-    DeviceInfoComponent,
     SelectDeviceComponent,
     EnergyClassColorComponent
   ],
