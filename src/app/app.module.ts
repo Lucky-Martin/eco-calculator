@@ -37,6 +37,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { EnterDeviceNameComponent } from './dialogs/enter-device-name/enter-device-name.component';
 import { ScanEnergyLabelQrComponent } from './add-device/steps/device-data/dialogs/scan-energy-label-qr/scan-energy-label-qr.component';
+import {ZXingScannerModule} from "@zxing/ngx-scanner";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { ScanEnergyLabelQrComponent } from './add-device/steps/device-data/dialo
     MatTreeModule,
     MatTooltipModule,
     MatAutocompleteModule,
-
+    ZXingScannerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
