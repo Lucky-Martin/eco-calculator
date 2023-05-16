@@ -1,20 +1,39 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import {map, Observable, startWith} from "rxjs";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {map, Observable, startWith, Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ScanEnergyLabelQrComponent} from "./dialogs/scan-energy-label-qr/scan-energy-label-qr.component";
+import {EprelService} from "./eprel.service";
+import {getDeviceTypeInLocalLanguage} from "../../../functions/getDeviceTypeInLocalLanguage";
 
 @Component({
   selector: 'app-device-data',
   templateUrl: './device-data.component.html',
   styleUrls: ['./device-data.component.css']
 })
-export class DeviceDataComponent implements OnInit {
+export class DeviceDataComponent implements OnInit, OnDestroy {
   @Input('deviceData') deviceData!: FormGroup;
   filteredOptions!: Observable<string[]>;
   options: string[] = ['Хладилник', 'Печка', 'Климатик', 'Микровълнова', 'Пералня', 'Сушилня', 'Съдомиялна', 'Компютър', 'Принтер', 'Бойлер', 'Крушка'];
 
-  constructor(private dialog: MatDialog) { }
+  eprelResultSubscription: Subscription;
+
+  constructor(private dialog: MatDialog,
+              private eprelService: EprelService) {
+    this.eprelResultSubscription = eprelService.eprelResult.subscribe({
+      next: (data) => {
+        this.dialog.closeAll();
+        this.deviceData.setValue({
+          name: '',
+          deviceType: getDeviceTypeInLocalLanguage(data.deviceType),
+          power: data.power,
+          energyClass: data.energyClass,
+          warranty: null
+        })
+      },
+      error: (err) => console.log(err)
+    })
+  }
 
   ngOnInit(): void {
     this.filteredOptions = this.deviceData.valueChanges.pipe(
@@ -23,8 +42,17 @@ export class DeviceDataComponent implements OnInit {
     );
   }
 
-  startScan(){
-    this.dialog.open(ScanEnergyLabelQrComponent);
+  ngOnDestroy(): void {
+    this.eprelResultSubscription.unsubscribe()
+  }
+
+  startScan() {
+    this.dialog.open(ScanEnergyLabelQrComponent, {
+      height: '70%',
+      width: '95%',
+      maxWidth: 512,
+      maxHeight: 512
+    });
   }
 
   private _filter(value: { deviceType: string }): string[] {
