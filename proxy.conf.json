@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://eprel.ec.europa.eu/api/",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
