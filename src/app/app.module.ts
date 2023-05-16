@@ -36,6 +36,7 @@ import { StarsRatingComponent } from './dialogs/feedback/stars-rating/stars-rati
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { EnterDeviceNameComponent } from './dialogs/enter-device-name/enter-device-name.component';
+import { ScanEnergyLabelQrComponent } from './add-device/steps/device-data/dialogs/scan-energy-label-qr/scan-energy-label-qr.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EnterDeviceNameComponent } from './dialogs/enter-device-name/enter-devi
     EnergyClassColorComponent,
     FeedbackComponent,
     StarsRatingComponent,
-    EnterDeviceNameComponent
+    EnterDeviceNameComponent,
+    ScanEnergyLabelQrComponent
   ],
   imports: [
     BrowserModule,

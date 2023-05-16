@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {map, Observable, startWith} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {ScanEnergyLabelQrComponent} from "./dialogs/scan-energy-label-qr/scan-energy-label-qr.component";
 
 @Component({
   selector: 'app-device-data',
@@ -12,13 +14,17 @@ export class DeviceDataComponent implements OnInit {
   filteredOptions!: Observable<string[]>;
   options: string[] = ['Хладилник', 'Печка', 'Климатик', 'Микровълнова', 'Пералня', 'Сушилня', 'Съдомиялна', 'Компютър', 'Принтер', 'Бойлер'];
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.filteredOptions = this.deviceData.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
     );
+  }
+
+  startScan(){
+    this.dialog.open(ScanEnergyLabelQrComponent);
   }
 
   private _filter(value: { deviceType: string }): string[] {
