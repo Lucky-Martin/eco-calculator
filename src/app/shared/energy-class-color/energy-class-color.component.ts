@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EnergyClass} from "../../../models/device.model";
+import {EnergyClass} from "../../models/device.model";
 
 @Component({
   selector: 'app-energy-class-color',

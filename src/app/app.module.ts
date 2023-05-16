@@ -30,7 +30,7 @@ import { DeviceFootprintPreviewComponent } from './devices-list/dialogs/device-f
 import {MatDialogModule} from "@angular/material/dialog";
 import { SelectDeviceComponent } from './compare-devices/select-device/select-device.component';
 import {MatTreeModule} from "@angular/material/tree";
-import { EnergyClassColorComponent } from './components/shared/energy-class-color/energy-class-color.component';
+import { EnergyClassColorComponent } from './shared/energy-class-color/energy-class-color.component';
 import { FeedbackComponent } from './dialogs/feedback/feedback.component';
 import { StarsRatingComponent } from './dialogs/feedback/stars-rating/stars-rating.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
