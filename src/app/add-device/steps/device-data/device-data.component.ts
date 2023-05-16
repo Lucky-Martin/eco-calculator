@@ -12,7 +12,7 @@ import {ScanEnergyLabelQrComponent} from "./dialogs/scan-energy-label-qr/scan-en
 export class DeviceDataComponent implements OnInit {
   @Input('deviceData') deviceData!: FormGroup;
   filteredOptions!: Observable<string[]>;
-  options: string[] = ['Хладилник', 'Печка', 'Климатик', 'Микровълнова', 'Пералня', 'Сушилня', 'Съдомиялна', 'Компютър', 'Принтер', 'Бойлер'];
+  options: string[] = ['Хладилник', 'Печка', 'Климатик', 'Микровълнова', 'Пералня', 'Сушилня', 'Съдомиялна', 'Компютър', 'Принтер', 'Бойлер', 'Крушка'];
 
   constructor(private dialog: MatDialog) { }
 

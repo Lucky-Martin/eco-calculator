@@ -22,5 +22,7 @@ export const getDeviceTypeInLocalLanguage = (deviceType: TDeviceType) => {
       return 'принтер';
     case "washing machine":
       return 'пералня';
+    case 'lightsources':
+      return 'крушка';
   }
 }

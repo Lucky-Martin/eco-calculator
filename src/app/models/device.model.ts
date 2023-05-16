@@ -12,7 +12,8 @@ export type TDeviceType =
   | "dishwasher"
   | "computer"
   | "printer"
-  | "boiler";
+  | "boiler"
+  | "lightsources";
 
 export type DeviceProp =
   "power"
