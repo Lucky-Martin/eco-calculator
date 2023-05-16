@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
+import {EprelService} from "../../eprel.service";
 
 @Component({
   selector: 'app-scan-energy-label-qr',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScanEnergyLabelQrComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<ScanEnergyLabelQrComponent>,
+              private eprelService: EprelService) { }
 
   ngOnInit(): void {
   }
 
+  onClose(){
+    this.dialogRef.close();
+  }
+
+  onScanComplete(scanResult: string) {
+    this.eprelService.getProductModel(scanResult);
+  }
 }

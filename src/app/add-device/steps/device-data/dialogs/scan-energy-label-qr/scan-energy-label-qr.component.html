@@ -1,1 +1,9 @@
-<p>scan-energy-label-qr works!</p>
+<div class="dialog">
+  <h1 mat-dialog-title>Сканирай QR код</h1>
+  <div mat-dialog-content>
+    <zxing-scanner (scanSuccess)="onScanComplete($event)"></zxing-scanner>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClose()">Затвори</button>
+  </div>
+</div>
