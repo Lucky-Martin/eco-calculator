@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@zxing/browser": "^0.1.3",
+    "@zxing/library": "^0.20.0",
     "@zxing/ngx-scanner": "^3.9.1",
     "material-icons": "^1.13.6",
     "rxjs": "~7.5.0",

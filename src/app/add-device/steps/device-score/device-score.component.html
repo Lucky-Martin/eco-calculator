@@ -1,7 +1,7 @@
 <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="criteria">
     <th mat-header-cell *matHeaderCellDef>Критерии</th>
-    <td mat-cell class="criteria" *matCellDef="let element">{{element.criteria}}</td>
+    <td mat-cell class="criteria" *matCellDef="let element" matTooltip="{{element.tip}}">{{element.criteria}}</td>
   </ng-container>
 
   <ng-container matColumnDef="value">
