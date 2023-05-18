@@ -7,6 +7,7 @@ interface IDataItem {
   firstDeviceValue: string;
   secondDeviceValue: string;
   objectKey: string;
+  tip: string;
 }
 
 @Component({
@@ -60,12 +61,12 @@ export class CompareDevicesComponent implements OnInit {
       const firstFootprint = this.firstDevice!.carbonFootprint;
       const secondFootprint = this.secondDevice!.carbonFootprint;
       this.dataSource = [
-        {criteria: 'Консумация на електроенергия за периода', firstDeviceValue: `${firstFootprint.electricityConsummationPerMonth} кВч`, secondDeviceValue: `${secondFootprint.electricityConsummationPerMonth} кВч`, objectKey: 'electricityConsummationPerMonth'},
-        {criteria: 'Разход за ел. енергия на периода', firstDeviceValue: `${firstFootprint.electricityDeviceCostForMonth} лв`, secondDeviceValue: `${secondFootprint.electricityDeviceCostForMonth} лв`, objectKey: 'electricityDeviceCostForMonth'},
-        {criteria: 'Разход на ел. енергия за целия живот на стоката', firstDeviceValue: `${firstFootprint.electricityDeviceConsumptionForLifetime} кВч`, secondDeviceValue: `${secondFootprint.electricityDeviceConsumptionForLifetime} кВч`, objectKey: 'electricityDeviceConsumptionForLifetime'},
-        {criteria: 'Разход за ел. енергия за целия живот на стоката', firstDeviceValue: `${firstFootprint.electricityDeviceCostForLifetime} лв`, secondDeviceValue: `${secondFootprint.electricityDeviceCostForLifetime} лв`, objectKey: 'electricityDeviceCostForLifetime'},
-        {criteria: 'Въглероден отпечатък на ползване', firstDeviceValue: `${firstFootprint.carbonFootprint} C02/кВч`, secondDeviceValue: `${secondFootprint.carbonFootprint} C02/кВч`, objectKey: 'carbonFootprint'},
-        {criteria: 'Енергийна ефективност', firstDeviceValue: firstFootprint.energyEfficiency, secondDeviceValue: secondFootprint.energyEfficiency, objectKey: 'energyEfficiency'}
+        {criteria: 'Консумация на електроенергия за периода', firstDeviceValue: `${firstFootprint.electricityConsummationPerMonth} кВч`, secondDeviceValue: `${secondFootprint.electricityConsummationPerMonth} кВч`, objectKey: 'electricityConsummationPerMonth', tip: 'Консумацията на електричество за един месец е общото количество енергия, изразходвано от потребителя през този период.'},
+        {criteria: 'Разход за ел. енергия на периода', firstDeviceValue: `${firstFootprint.electricityDeviceCostForMonth} лв`, secondDeviceValue: `${secondFootprint.electricityDeviceCostForMonth} лв`, objectKey: 'electricityDeviceCostForMonth', tip: 'Разход за ел. енергия на месец е общото количество електричество, което се изразходва от домакинството или бизнеса през този период.'},
+        {criteria: 'Разход на ел. енергия за целия живот на стоката', firstDeviceValue: `${firstFootprint.electricityDeviceConsumptionForLifetime} кВч`, secondDeviceValue: `${secondFootprint.electricityDeviceConsumptionForLifetime} кВч`, objectKey: 'electricityDeviceConsumptionForLifetime', tip: 'Разход на ел. енергия за целия живот на стоката е общото количество енергия, което се изразходва от производството, употребата и изхвърлянето му.'},
+        {criteria: 'Разход за ел. енергия за целия живот на стоката', firstDeviceValue: `${firstFootprint.electricityDeviceCostForLifetime} лв`, secondDeviceValue: `${secondFootprint.electricityDeviceCostForLifetime} лв`, objectKey: 'electricityDeviceCostForLifetime', tip: 'Разход за ел. енергия за целия живот на стоката е цената за общото количество енергия, което се изразходва от производството, употребата и изхвърлянето му.'},
+        {criteria: 'Въглероден отпечатък на ползване', firstDeviceValue: `${firstFootprint.carbonFootprint} C02/кВч`, secondDeviceValue: `${secondFootprint.carbonFootprint} C02/кВч`, objectKey: 'carbonFootprint', tip: 'Въглеродният отпечатък на потреблението е мярка за общото количество парникови газове, излъчени от едно действие, продукт или услуга.'},
+        {criteria: 'Енергийна ефективност', firstDeviceValue: firstFootprint.energyEfficiency, secondDeviceValue: secondFootprint.energyEfficiency, objectKey: 'energyEfficiency', tip: 'Енергийната ефективност е способността да се използва по-малко енергия за постигане на същия резултат.'}
       ];
 
       this.displayedColumns = ['criteria', this.firstDevice!.name, this.secondDevice!.name]

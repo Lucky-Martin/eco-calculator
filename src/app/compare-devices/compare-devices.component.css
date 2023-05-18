@@ -45,3 +45,10 @@ table td, table th {
 table .highlight {
   color: #45B173;
 }
+.td-tip {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  min-height: 47px;
+  height: 100%;
+}
