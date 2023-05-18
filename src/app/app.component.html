@@ -15,8 +15,8 @@
   </div>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav mode="side" [opened]="showNav">
-    <app-navigation></app-navigation>
+  <mat-sidenav mode="push" [opened]="showNav">
+    <app-navigation (pageChanged)="updateNavState(false)"></app-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
