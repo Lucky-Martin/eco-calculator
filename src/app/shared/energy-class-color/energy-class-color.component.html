@@ -1,4 +1,4 @@
-<div [ngSwitch]="energyClass">
+<div [ngSwitch]="energyClass" [class]="showLabel ? 'flex' : undefined">
   <div *ngSwitchCase="'APP'"> <div class="square rounded appColor"></div> </div>
   <div *ngSwitchCase="'AP'"> <div class="square rounded apColor"></div> </div>
   <div *ngSwitchCase="'A'"> <div class="square rounded aColor"></div> </div>
@@ -8,4 +8,5 @@
   <div *ngSwitchCase="'E'"> <div class="square rounded eColor"></div> </div>
   <div *ngSwitchCase="'F'"> <div class="square rounded fColor"></div> </div>
   <div *ngSwitchCase="'G'"> <div class="square rounded gColor"></div> </div>
+  <p *ngIf="showLabel">{{energyClass}}</p>
 </div>

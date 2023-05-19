@@ -8,6 +8,7 @@ import {EnergyClass} from "../../models/device.model";
 })
 export class EnergyClassColorComponent implements OnInit {
   @Input("energyClass") energyClass!: string;
+  @Input('showLabel') showLabel!: boolean;
 
   constructor() { }
 

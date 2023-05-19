@@ -52,3 +52,9 @@ table .highlight {
   min-height: 47px;
   height: 100%;
 }
+td.flex-center {
+  min-height: 47px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}

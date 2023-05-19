@@ -42,3 +42,11 @@
 .gColor{
   background-color: #CC232A;
 }
+.flex {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.flex p {
+  margin: 0 0 0 5px;
+}

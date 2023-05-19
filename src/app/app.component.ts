@@ -8,7 +8,7 @@ import {RatingService} from "./services/rating.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showNav = true;
+  showNav = false;
 
   constructor(private router: Router,
               private ratingService: RatingService) {
