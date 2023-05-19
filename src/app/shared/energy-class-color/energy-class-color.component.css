@@ -7,27 +7,27 @@
   border-radius: 100%;
 }
 
-.appColor{
+.aColor{
   background-color: #33A357;
 }
 
-.apColor{
+.bColor{
   background-color: #79B752;
 }
 
-.aColor{
+.cColor{
   background-color: #C3D545;
 }
 
-.bColor{
+.dColor{
   background-color: #FFF12C;
 }
 
-.cColor{
-  background-color: #F8F9FA;
+.eColor{
+  background-color: #F37022;
 }
 
-.dColor{
+.fColor{
   background-color: #D66F2C;
 }
 
@@ -35,13 +35,10 @@
   background-color: #CC232A;
 }
 
-.fColor{
-  background-color: #CC232A;
-}
-
 .gColor{
   background-color: #CC232A;
 }
+
 .flex {
   display: flex;
   justify-content: start;

@@ -7,7 +7,7 @@ import {MatStepper} from "@angular/material/stepper";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {EnterDeviceNameComponent} from "../dialogs/enter-device-name/enter-device-name.component";
-import {getDeviceTypeFromLocalLanguage} from "../functions/getDeviceTypeInLocalLanguage";
+import {getDeviceTypeFromLocalLanguage, getDeviceTypeInLocalLanguage} from "../functions/getDeviceTypeInLocalLanguage";
 
 @Component({
   selector: 'app-add-device',
@@ -44,7 +44,7 @@ export class AddDeviceComponent implements OnInit {
       this.deviceUUID = uuid;
       this.deviceData.setValue({
         name, power, energyClass,
-        deviceType: typeOfDevice,
+        deviceType: getDeviceTypeInLocalLanguage(typeOfDevice),
         warranty: warrantyInMonths,
       });
       this.deviceUsage = workingHours;
