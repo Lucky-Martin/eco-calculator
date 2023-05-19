@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ScanEnergyLabelQrComponent} from "./dialogs/scan-energy-label-qr/scan-energy-label-qr.component";
 import {EprelService} from "./eprel.service";
 import {getDeviceTypeInLocalLanguage} from "../../../functions/getDeviceTypeInLocalLanguage";
+import {DeviceTypes, TDeviceType} from "../../../models/device.model";
 
 @Component({
   selector: 'app-device-data',
@@ -14,7 +15,6 @@ import {getDeviceTypeInLocalLanguage} from "../../../functions/getDeviceTypeInLo
 export class DeviceDataComponent implements OnInit, OnDestroy {
   @Input('deviceData') deviceData!: FormGroup;
   filteredOptions!: Observable<string[]>;
-  options: string[] = ['Хладилник', 'Печка', 'Климатик', 'Микровълнова', 'Пералня', 'Сушилня', 'Съдомиялна', 'Компютър', 'Принтер', 'Бойлер', 'Крушка'];
 
   eprelResultSubscription: Subscription;
 
@@ -28,7 +28,7 @@ export class DeviceDataComponent implements OnInit, OnDestroy {
           deviceType: getDeviceTypeInLocalLanguage(data.deviceType),
           power: data.power,
           energyClass: data.energyClass,
-          warranty: null
+          warranty: data.warranty ?? null
         })
       },
       error: (err) => console.log(err)
@@ -58,9 +58,12 @@ export class DeviceDataComponent implements OnInit, OnDestroy {
   private _filter(value: { deviceType: string }): string[] {
     if (value) {
       const filterValue = value.deviceType.toLowerCase();
-      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+      return this.DeviceTypes.filter(option => getDeviceTypeInLocalLanguage(option).toLowerCase().includes(filterValue));
     } else {
-      return this.options;
+      return this.DeviceTypes;
     }
   }
+
+  enToBg(value: string) {return getDeviceTypeInLocalLanguage(value as TDeviceType)}
+  protected readonly DeviceTypes = DeviceTypes;
 }

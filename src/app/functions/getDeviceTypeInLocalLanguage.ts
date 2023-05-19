@@ -1,28 +1,51 @@
-import {TDeviceType} from "../models/device.model";
+import {TDeviceType, TDeviceTypeBG} from "../models/device.model";
 
 export const getDeviceTypeInLocalLanguage = (deviceType: TDeviceType) => {
   switch (deviceType) {
-    case 'refrigerator':
-      return 'хладилник';
-    case 'stove':
-      return 'печка';
-    case "air conditioner":
-      return 'климатик';
-    case "boiler":
-      return 'бойлер';
-    case "computer":
-      return 'компютър';
-    case "dishwasher":
-      return 'съдомиална';
-    case "dryer":
-      return 'сушилня';
-    case "microwave":
-      return 'микровълнова';
-    case "printer":
-      return 'принтер';
-    case "washing machine":
-      return 'пералня';
-    case 'lightsources':
-      return 'крушка';
+    case "dishwashers2019":
+      return 'Съдомиялна';
+    case "washingmachines2019":
+      return 'Пералня';
+    case "washerdriers2019":
+      return 'Пералня със сушилня';
+    case "electronicdisplays":
+      return 'Телевизор/Монитор';
+    case "refrigeratingappliances2019":
+      return 'Хладилник/Фризер/Хранилище за вино';
+    case "lightsources":
+      return 'Лампа/Крушка';
+    case "airconditioners":
+      return 'Климатик';
+    case "ovens":
+      return 'Фурна';
+    case "rangehoods":
+      return "Аспиратор";
+    case "waterheaters":
+      return 'Бойлер';
+  }
+}
+
+export const getDeviceTypeFromLocalLanguage = (deviceTypeInBg: TDeviceTypeBG) => {
+  switch (deviceTypeInBg) {
+    case "Съдомиялна":
+      return 'dishwashers2019';
+    case "Пералня":
+      return 'washingmachines2019';
+    case "Пералня със сушилня":
+      return 'washerdriers2019';
+    case "Телевизор/Монитор":
+      return 'electronicdisplays';
+    case "Хладилник/Фризер/Хранилище за вино":
+      return 'refrigeratingappliances2019';
+    case "Лампа/Крушка":
+      return 'lightsources';
+    case "Климатик":
+      return 'airconditioners';
+    case "Фурна":
+      return 'ovens';
+    case "Аспиратор":
+      return "rangehoods";
+    case "Бойлер":
+      return 'waterheaters';
   }
 }

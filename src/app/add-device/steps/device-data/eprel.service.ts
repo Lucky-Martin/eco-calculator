@@ -24,11 +24,11 @@ export class EprelService {
     if (regex.test(scanResult)) {
       this._isFetching = true;
       this.isFetchSuccess.next(this._isFetching);
-      this.http.get<any>(`/api/product/${eprelProductCode}`).subscribe({
+      this.http.get<any>(`https://eprel.ec.europa.eu/api/product/${eprelProductCode}`).subscribe({
         next: (result) => {
           const deviceDataResult: DeviceDataModel = {
             deviceType: result.productGroup,
-            power: result.energyConsOnMode,
+            power: this._calculatePower(result),
             energyClass: result.energyClass,
             warranty: result.guaranteeDuration
           }
@@ -44,6 +44,46 @@ export class EprelService {
           this.isFetchSuccess.next(this._isFetching);
         }
       });
+    }
+  }
+
+  private _calculatePower(result: any) {
+    switch (result.productGroup) {
+      case "dishwashers2019":
+        return Number((result.energyCons / (result.programmeDuration / 60)).toFixed(3));
+
+      case "washingmachines2019":
+        return Number((result.energyConsPerCycle / (result.programmeDurationRated / 60)).toFixed(3));
+
+      case "washerdriers2019":
+        return Number((result.energyConsumptionWashAndDry / (result.programDurationRatedWashAndDry / 60)).toFixed(3));
+
+      case "electronicdisplays":
+        return Number((result.powerOnModeSDR / 1_000).toFixed(3));
+
+      case "refrigeratingappliances2019":
+        return Number((result.energyConsAnnualV2 / (365 * 24)).toFixed(3));
+
+      case "lightsources":
+        return Number((result.energyConsOnMode / 1_000).toFixed(3));
+
+      case "airconditioners":
+        return Number((result.coolingCharacteristics.annualElectricityConsumption / (365 * 24)).toFixed(3));
+
+      case "ovens":
+        const averageConsumption = result.cavities.reduce((acc: number, current: any) =>
+          acc + (current.energyConsumptionCycle ?? 0) + (current.energyConsumptionCycleFanForcedGas ?? 0) + (current.energyConsumptionCycleFanForced ?? 0)
+        ) / result.numberCavities;
+        return Number(averageConsumption.toFixed(3));
+
+      case "rangehoods":
+        return Number((result.energyAnnual / (365 * 24)).toFixed(3));
+
+      case "waterheaters":
+        return Number((result.loadProfiles[0].waterHeatingAnnualElectricityCons).toFixed(3))
+
+      default:
+        return 0;
     }
   }
 

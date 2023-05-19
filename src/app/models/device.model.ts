@@ -3,45 +3,44 @@ import {CalculatorService} from "../services/calculator.service";
 
 export type TEnergyClass = "A" | "B" | "C" | "D" | "E" | "F" | "G";
 export type TDeviceType =
-  "refrigerator"
-  | "stove"
-  | "air conditioner"
-  | "microwave"
-  | "washing machine"
-  | "dryer"
-  | "dishwasher"
-  | "computer"
-  | "printer"
-  | "boiler"
-  | "lightsources";
+  "dishwashers2019"
+  | "washingmachines2019"
+  | "washerdriers2019"
+  | "electronicdisplays"
+  | "refrigeratingappliances2019"
+  | "lightsources"
+  | "airconditioners"
+  | "ovens"
+  | "rangehoods"
+  | "waterheaters";
+export type TDeviceTypes = TDeviceType[];
 
-export enum EprelProductGroup{
-  dishwashers2019 = "Съдомиялна",
-  washingmachines2019 = "Пералня",
-  washerdriers2019 = "Сушилня",
-  electronicdisplays = "Телевизор/Монитор",
-  refrigeratingappliances2019 = "Хладилник/Фризер/Хранилище за вино",
-  refrigeratingappliancesdirectsalesfunction = "Хладилник/Фризер/Охладител за напитки/Фризер за сладолед (търговска функция)",
-  tyres = "Гуми",
-  lightsources = "Светлинен източник",
-  airconditioners = "Климатик",
-  ovens = "Фурна",
-  rangehoods = "Аспиратор",
-  tumbledriers = "Домакинска барабанна сушилня",
-  localspaceheaters = "Отоплител",
-  professionalrefrigeratedstoragecabinets = "Професионален хладилен шкаф",
-  residentialventilationunits = "Жилищно вентилационно устройство",
-  solidfuelboilers = "Котел на твърдо гориво",
-  solidfuelboilerpackages = "Пакет от котли на твърдо гориво",
-  spaceheaters = "Пространствен/комбиниран отоплител",
-  spaceheaterpackages = "Пакет от пространствени/комбинирани отоплителни уреди",
-  spaceheatertemperaturecontrol = "Термостат/Терморегулатор",
-  spaceheatersolardevice = "",
-  waterheaters = "",
-  waterheaterpackages = "",
-  hotwaterstoragetanks = "",
-  waterheatersolardevices = ""
-}
+export type TDeviceTypeBG =
+  "Съдомиялна"
+  | "Пералня"
+  | "Пералня със сушилня"
+  | "Телевизор/Монитор"
+  | "Хладилник/Фризер/Хранилище за вино"
+  | "Лампа/Крушка"
+  | "Климатик"
+  | "Фурна"
+  | "Аспиратор"
+  | "Бойлер";
+
+export type TDeviceTypesBG = TDeviceTypeBG[];
+
+export const DeviceTypes: TDeviceTypes = [
+  "dishwashers2019",
+  "washingmachines2019",
+  "washerdriers2019",
+  "electronicdisplays",
+  "refrigeratingappliances2019",
+  "lightsources",
+  "airconditioners",
+  "ovens",
+  "rangehoods",
+  "waterheaters"
+];
 
 export type DeviceProp =
   "power"

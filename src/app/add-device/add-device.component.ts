@@ -7,6 +7,7 @@ import {MatStepper} from "@angular/material/stepper";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {EnterDeviceNameComponent} from "../dialogs/enter-device-name/enter-device-name.component";
+import {getDeviceTypeFromLocalLanguage} from "../functions/getDeviceTypeInLocalLanguage";
 
 @Component({
   selector: 'app-add-device',
@@ -52,7 +53,7 @@ export class AddDeviceComponent implements OnInit {
   }
 
   async saveDevice() {
-    let {name, power, energyClass, deviceType, warranty} = this.getInputData();
+    const {name, power, energyClass, deviceType, warranty} = this.getInputData();
     if (!name || name === '') {
       const dialog = this.matDialog.open(EnterDeviceNameComponent, {
         height: '70%',
@@ -75,7 +76,7 @@ export class AddDeviceComponent implements OnInit {
       energyClass, name, power,
       uuid: this.deviceUUID,
       carbonFootprint: this.deviceFootprint,
-      typeOfDevice: deviceType,
+      typeOfDevice: getDeviceTypeFromLocalLanguage(deviceType) as any,
       warrantyInMonths: warranty,
       workingHours: this.deviceUsage
     };
@@ -95,7 +96,7 @@ export class AddDeviceComponent implements OnInit {
     const {name, deviceType, power, energyClass, warranty} = this.getInputData();
     this.device = new Device({
       energyClass, name, power,
-      typeOfDevice: deviceType,
+      typeOfDevice: getDeviceTypeFromLocalLanguage(deviceType),
       warrantyInMonths: warranty,
       workingHours: this.deviceUsage
     });
