@@ -5,7 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ScanEnergyLabelQrComponent} from "./dialogs/scan-energy-label-qr/scan-energy-label-qr.component";
 import {EprelService} from "./eprel.service";
 import {getDeviceTypeInLocalLanguage} from "../../../functions/getDeviceTypeInLocalLanguage";
-import {DeviceTypes, TDeviceType} from "../../../models/device.model";
+import {DeviceTypes, TDeviceType, TDeviceTypesBG} from "../../../models/device.model";
 
 @Component({
   selector: 'app-device-data',
@@ -14,7 +14,7 @@ import {DeviceTypes, TDeviceType} from "../../../models/device.model";
 })
 export class DeviceDataComponent implements OnInit, OnDestroy {
   @Input('deviceData') deviceData!: FormGroup;
-  filteredOptions!: Observable<string[]>;
+  filteredOptions!: Observable<TDeviceTypesBG>;
 
   eprelResultSubscription: Subscription;
 
@@ -36,9 +36,11 @@ export class DeviceDataComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
     this.filteredOptions = this.deviceData.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
+      map(options => options.map(value => this.enToBg(value)))
     );
   }
 
